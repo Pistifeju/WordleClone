@@ -12,6 +12,8 @@ class MainViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let keyboardView = KeyboardView(frame: .zero)
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -21,10 +23,13 @@ class MainViewController: UIViewController {
     
     // MARK: - UI Setup
     private func setupUI() {
-        self.view.backgroundColor = .systemBlue
+        self.view.backgroundColor = .systemGray2
+        view.addSubview(keyboardView)
         
         NSLayoutConstraint.activate([
-            
+            keyboardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            keyboardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            keyboardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     

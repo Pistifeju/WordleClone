@@ -12,6 +12,8 @@
 		B744C07C295B92B400C046C1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C07B295B92B400C046C1 /* MainViewController.swift */; };
 		B744C081295B92B500C046C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B744C080295B92B500C046C1 /* Assets.xcassets */; };
 		B744C084295B92B500C046C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B744C082295B92B500C046C1 /* LaunchScreen.storyboard */; };
+		B744C092295B960800C046C1 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C091295B960800C046C1 /* KeyboardView.swift */; };
+		B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C093295BAE0200C046C1 /* KeyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		B744C080295B92B500C046C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B744C083295B92B500C046C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B744C085295B92B500C046C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B744C091295B960800C046C1 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		B744C093295BAE0200C046C1 /* KeyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 		B744C08E295B944500C046C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B744C091295B960800C046C1 /* KeyboardView.swift */,
+				B744C093295BAE0200C046C1 /* KeyCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,8 +173,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B744C07C295B92B400C046C1 /* MainViewController.swift in Sources */,
+				B744C092295B960800C046C1 /* KeyboardView.swift in Sources */,
 				B744C078295B92B400C046C1 /* AppDelegate.swift in Sources */,
 				B744C07A295B92B400C046C1 /* SceneDelegate.swift in Sources */,
+				B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
