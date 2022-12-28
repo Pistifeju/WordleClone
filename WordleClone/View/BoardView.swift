@@ -105,6 +105,7 @@ extension BoardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyCell.identifier, for: indexPath) as? KeyCell else { fatalError() }
+        cell.backgroundColor = datasource?.boxColor(at: indexPath)
         
         let guesses = datasource?.currentGuesses ?? []
         if let letter = guesses[indexPath.section][indexPath.row] {
