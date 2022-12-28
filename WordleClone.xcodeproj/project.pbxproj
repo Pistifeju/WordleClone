@@ -14,6 +14,7 @@
 		B744C084295B92B500C046C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B744C082295B92B500C046C1 /* LaunchScreen.storyboard */; };
 		B744C092295B960800C046C1 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C091295B960800C046C1 /* KeyboardView.swift */; };
 		B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C093295BAE0200C046C1 /* KeyCell.swift */; };
+		B744C096295CF6BE00C046C1 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C095295CF6BE00C046C1 /* BoardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B744C085295B92B500C046C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B744C091295B960800C046C1 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		B744C093295BAE0200C046C1 /* KeyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCell.swift; sourceTree = "<group>"; };
+		B744C095295CF6BE00C046C1 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				B744C091295B960800C046C1 /* KeyboardView.swift */,
 				B744C093295BAE0200C046C1 /* KeyCell.swift */,
+				B744C095295CF6BE00C046C1 /* BoardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				B744C07C295B92B400C046C1 /* MainViewController.swift in Sources */,
 				B744C092295B960800C046C1 /* KeyboardView.swift in Sources */,
 				B744C078295B92B400C046C1 /* AppDelegate.swift in Sources */,
+				B744C096295CF6BE00C046C1 /* BoardView.swift in Sources */,
 				B744C07A295B92B400C046C1 /* SceneDelegate.swift in Sources */,
 				B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */,
 			);

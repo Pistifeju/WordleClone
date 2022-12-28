@@ -8,9 +8,15 @@
 import Foundation
 import UIKit
 
+protocol KeyboardViewDelegate: AnyObject {
+    func keyboardView(_ vc: KeyboardView, didTapKey letter: Character)
+}
+
 class KeyboardView: UIView {
     
     // MARK: - Properties
+    
+    weak var delegate: KeyboardViewDelegate?
     
     let letters = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
     private var keys: [[Character]] = []
@@ -89,6 +95,10 @@ extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
                 cell?.alpha = 1
             })
         }
+        
+        let letter = self.keys[indexPath.section][indexPath.row]
+        
+        delegate?.keyboardView(self, didTapKey: letter)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
