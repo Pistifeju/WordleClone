@@ -29,11 +29,6 @@ class BoardView: UIView {
         return collectionView
     }()
     
-    override var intrinsicContentSize: CGSize {
-        let width = UIScreen.main.bounds.width
-        return CGSize(width: width, height: width + 2)
-    }
-    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)

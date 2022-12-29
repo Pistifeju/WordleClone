@@ -28,6 +28,42 @@ class MainViewController: UIViewController {
     private let boardView = BoardView(frame: .zero)
     private var currentRow = 0
     
+    private lazy var statisticsButton: UIButton = {
+        let imgConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium, scale: .default)
+        let image = UIImage(systemName: "chart.bar.xaxis", withConfiguration: imgConfig)
+        let button = UIButton(type: .system)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(didTapSettings), for: .touchUpInside)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.tintColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var settingsButton: UIButton = {
+        let imgConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium, scale: .default)
+        let image = UIImage(systemName: "gearshape", withConfiguration: imgConfig)
+        let button = UIButton(type: .system)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(didTapSettings), for: .touchUpInside)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.tintColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var gameRulesButton: UIButton = {
+        let imgConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium, scale: .default)
+        let image = UIImage(systemName: "questionmark.diamond", withConfiguration: imgConfig)
+        let button = UIButton(type: .system)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(didTapSettings), for: .touchUpInside)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.tintColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -61,30 +97,40 @@ class MainViewController: UIViewController {
     private func setupUI() {
         self.view.backgroundColor = .white
         
+        self.createTopItems()
+        self.navigationController?.navigationBar.isHidden = true
+        
         view.addSubview(keyboardView)
         view.addSubview(boardView)
-        
+
         NSLayoutConstraint.activate([
             keyboardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             keyboardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             keyboardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-        
+
         NSLayoutConstraint.activate([
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: boardView.trailingAnchor, multiplier: 4),
             boardView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 4),
-            boardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            boardView.topAnchor.constraint(equalToSystemSpacingBelow: settingsButton.bottomAnchor, multiplier: 2),
+            keyboardView.topAnchor.constraint(equalToSystemSpacingBelow: boardView.bottomAnchor, multiplier: 2),
         ])
+        
     }
     
     private func createTopItems() {
-        let imgConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium, scale: .default)
-        let image = UIImage(systemName: "line.3.horizontal", withConfiguration: imgConfig)
-        let imageView = UIImageView(image: image)
-        self.navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(customView: imageView)
-        imageView.tintColor = UIColor.black
-        self.navigationController?.navigationBar.topItem?.leftBarButtonItem?.target = self
-        self.navigationController?.navigationBar.topItem?.leftBarButtonItem?.action = #selector(didTapMenu)
+        view.addSubview(settingsButton)
+        view.addSubview(gameRulesButton)
+        view.addSubview(statisticsButton)
+        
+        NSLayoutConstraint.activate([
+            settingsButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
+            settingsButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 4),
+            gameRulesButton.centerYAnchor.constraint(equalTo: settingsButton.centerYAnchor),
+            statisticsButton.centerYAnchor.constraint(equalTo: settingsButton.centerYAnchor),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: gameRulesButton.trailingAnchor, multiplier: 4),
+            gameRulesButton.leadingAnchor.constraint(equalToSystemSpacingAfter: statisticsButton.trailingAnchor, multiplier: 2),
+        ])
     }
     
     private func colorKeys() {
@@ -94,7 +140,9 @@ class MainViewController: UIViewController {
                 for k in 0..<self.keys[j].count {
                     if guessCell?.char == self.keys[j][k].char {
                         if let color = guessCell?.color, color != UIColor.clear {
-                            self.keys[j][k].color = color
+                            if self.keys[j][k].color != UIColor.systemGreen {
+                                self.keys[j][k].color = color
+                            }
                         } else {
                             self.keys[j][k].color = UIColor.systemGray2
                         }
@@ -119,10 +167,25 @@ class MainViewController: UIViewController {
         
         return UIColor.clear
     }
+    
+    private func checkWin() -> Bool{
+        let countGreens = self.guesses[currentRow].filter({$0?.color == UIColor.systemGreen}).count
+        
+        return countGreens == 5
+        
+    }
     // MARK: - Selectors
     
-    @objc private func didTapMenu() {
-        print("ye")
+    @objc private func didTapStatistics() {
+        print("stats")
+    }
+    
+    @objc private func didTapRules() {
+        
+    }
+    
+    @objc private func didTapSettings() {
+        
     }
 }
 
@@ -161,10 +224,15 @@ extension MainViewController: KeyboardViewDelegate {
         //Color keys
         self.colorKeys()
         
+        //Check win
         self.boardView.reloadData()
         self.keyboardView.reloadData()
-        self.currentRow += 1
-        self.currentGuessIndex = -1
+        if self.checkWin() {
+            //Win
+        } else {
+            self.currentRow += 1
+            self.currentGuessIndex = -1
+        }
     }
     
     func didTapRemoveChar(_ v: KeyboardView) {

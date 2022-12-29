@@ -132,7 +132,7 @@ class KeyboardView: UIView {
         
         let buttonWidth = (width - 64) / 3
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalToSystemSpacingBelow: keyboardCollectionView.bottomAnchor, multiplier: 2),
+            stackView.topAnchor.constraint(equalToSystemSpacingBelow: keyboardCollectionView.bottomAnchor, multiplier: 0),
             stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 4),
             trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 4),
             removeCharButton.heightAnchor.constraint(equalToConstant: cellHeight),
@@ -160,23 +160,26 @@ class KeyboardView: UIView {
 extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
         
-        UIView.animate(withDuration: 0.3,
-                       animations: {
-            //Fade-out
-            cell?.alpha = 0.5
-        }) { (completed) in
+        let cell = collectionView.cellForItem(at: indexPath)
+        let key = datasource?.keyCells[indexPath.section][indexPath.row]
+        
+        if key?.color != UIColor.systemGray2 {
             UIView.animate(withDuration: 0.3,
                            animations: {
                 //Fade-out
-                cell?.alpha = 1
-            })
+                cell?.alpha = 0.5
+            }) { (completed) in
+                UIView.animate(withDuration: 0.3,
+                               animations: {
+                    //Fade-out
+                    cell?.alpha = 1
+                })
+            }
+            
+            
+            delegate?.keyboardView(self, didTapKey: key?.char ?? " ")
         }
-        
-        let key = datasource?.keyCells[indexPath.section][indexPath.row]
-        
-        delegate?.keyboardView(self, didTapKey: key?.char ?? " ")
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
