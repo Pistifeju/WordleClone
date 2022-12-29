@@ -14,11 +14,12 @@ class KeyCell: UICollectionViewCell {
     private let letterLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.white
+        label.textColor = UIColor.black
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
     }()
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +34,13 @@ class KeyCell: UICollectionViewCell {
     
     private func configureUI() {
         addSubview(letterLabel)
+        layer.cornerRadius = 10
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        layer.shadowRadius = 2.0
+        layer.shadowOpacity = 1.0
+        layer.masksToBounds = false
+        layer.borderWidth = 1
         
         self.backgroundColor = nil
         self.layer.borderWidth = 1

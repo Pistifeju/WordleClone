@@ -32,10 +32,50 @@ class KeyboardView: UIView {
         return collectionView
     }()
     
+    private let enterButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("ENTER", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        button.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.gray.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        button.layer.shadowRadius = 2.0
+        button.layer.shadowOpacity = 1.0
+        button.layer.masksToBounds = false
+        button.layer.borderWidth = 1
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.clear
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
+        
+        return button
+    }()
+    
+    private let removeCharButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("<", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        button.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.gray.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        button.layer.shadowRadius = 2.0
+        button.layer.shadowOpacity = 1.0
+        button.layer.masksToBounds = false
+        button.layer.borderWidth = 1
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.clear
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
+        
+        return button
+    }()
+    
     override var intrinsicContentSize: CGSize {
         let width = UIScreen.main.bounds.width
         let cellHeight = (width / 10) * 1.5
-        return CGSize(width: width, height: cellHeight * 3 + 15)
+        return CGSize(width: width, height: cellHeight * 3 + 15 + 16 + cellHeight)
     }
     
     // MARK: - Lifecycle
@@ -65,12 +105,30 @@ class KeyboardView: UIView {
         backgroundColor = .clear
         
         self.addSubview(keyboardCollectionView)
+        self.addSubview(enterButton)
+        self.addSubview(removeCharButton)
         
+        let width = UIScreen.main.bounds.width
+        let cellHeight = (width / 10) * 1.5
         NSLayoutConstraint.activate([
             keyboardCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             keyboardCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             keyboardCollectionView.topAnchor.constraint(equalTo: topAnchor),
-            keyboardCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            keyboardCollectionView.heightAnchor.constraint(equalToConstant: cellHeight * 3 + 15)
+        ])
+        
+        NSLayoutConstraint.activate([
+            enterButton.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+            enterButton.topAnchor.constraint(equalToSystemSpacingBelow: keyboardCollectionView.bottomAnchor, multiplier: 2),
+            enterButton.heightAnchor.constraint(equalToConstant: cellHeight),
+            enterButton.widthAnchor.constraint(equalToConstant: cellHeight*2),
+        ])
+        
+        NSLayoutConstraint.activate([
+            trailingAnchor.constraint(equalToSystemSpacingAfter: removeCharButton.trailingAnchor, multiplier: 2),
+            removeCharButton.topAnchor.constraint(equalToSystemSpacingBelow: keyboardCollectionView.bottomAnchor, multiplier: 2),
+            removeCharButton.heightAnchor.constraint(equalToConstant: cellHeight),
+            removeCharButton.widthAnchor.constraint(equalToConstant: cellHeight*2),
         ])
     }
     

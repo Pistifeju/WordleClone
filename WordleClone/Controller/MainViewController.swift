@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
     
     // MARK: - UI Setup
     private func setupUI() {
-        self.view.backgroundColor = .systemGray2
+        self.view.backgroundColor = .white
         
         view.addSubview(keyboardView)
         view.addSubview(boardView)
@@ -62,9 +62,9 @@ class MainViewController: UIViewController {
         let indexedAnswer = Array(answer)
         
         if(indexedAnswer[y] == char) {
-            return UIColor.green
+            return UIColor.systemGreen
         } else if (indexedAnswer.contains(char)) {
-            return UIColor.orange
+            return UIColor.systemOrange
         }
         
         return UIColor.clear
