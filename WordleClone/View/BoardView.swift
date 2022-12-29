@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol BoardViewControllerDataSource: AnyObject {
-    var currentGuesses: [[Cell]] { get }
+    var currentGuesses: [[Cell?]] { get }
 }
 
 class BoardView: UIView {
@@ -104,7 +104,8 @@ extension BoardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyCell.identifier, for: indexPath) as? KeyCell else { fatalError() }
         
         let guesses = datasource?.currentGuesses ?? []
-        let guessCell = guesses[indexPath.section][indexPath.row]
+        
+        let guessCell = guesses[indexPath.section][indexPath.row] ?? Cell(char: " ")
         cell.configure(with: guessCell)
         
         return cell

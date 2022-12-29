@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 
 protocol KeyboardViewDelegate: AnyObject {
-    func keyboardView(_ vc: KeyboardView, didTapKey letter: Character)
+    func keyboardView(_ v: KeyboardView, didTapKey letter: Character)
+    func didTapEnter(_ v: KeyboardView)
+    func didTapRemoveChar(_ v: KeyboardView)
 }
 
 class KeyboardView: UIView {
@@ -19,7 +21,7 @@ class KeyboardView: UIView {
     weak var delegate: KeyboardViewDelegate?
     
     let letters = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
-    private var keys: [[Character]] = []
+    private var keys: [[Cell]] = []
     
     private let keyboardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -82,6 +84,9 @@ class KeyboardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        removeCharButton.addTarget(self, action: #selector(didTapRemoveChar), for: .touchUpInside)
+        enterButton.addTarget(self, action: #selector(didTapEnter), for: .touchUpInside)
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         
         keyboardCollectionView.delegate = self
@@ -89,7 +94,11 @@ class KeyboardView: UIView {
         
         for row in letters {
             let chars = Array(row)
-            keys.append(chars)
+            var cells: [Cell] = []
+            for i in 0..<chars.count {
+                cells.append(Cell(char: chars[i]))
+            }
+            self.keys.append(cells)
         }
         
         configureUI()
@@ -103,10 +112,17 @@ class KeyboardView: UIView {
     
     private func configureUI() {
         backgroundColor = .clear
+        let fillView = UIView(frame: .zero)
+        fillView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(keyboardCollectionView)
         self.addSubview(enterButton)
         self.addSubview(removeCharButton)
+        let stackView = UIStackView(arrangedSubviews: [enterButton,fillView,removeCharButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(stackView)
         
         let width = UIScreen.main.bounds.width
         let cellHeight = (width / 10) * 1.5
@@ -118,21 +134,27 @@ class KeyboardView: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            enterButton.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
-            enterButton.topAnchor.constraint(equalToSystemSpacingBelow: keyboardCollectionView.bottomAnchor, multiplier: 2),
-            enterButton.heightAnchor.constraint(equalToConstant: cellHeight),
-            enterButton.widthAnchor.constraint(equalToConstant: cellHeight*2),
-        ])
-        
-        NSLayoutConstraint.activate([
-            trailingAnchor.constraint(equalToSystemSpacingAfter: removeCharButton.trailingAnchor, multiplier: 2),
-            removeCharButton.topAnchor.constraint(equalToSystemSpacingBelow: keyboardCollectionView.bottomAnchor, multiplier: 2),
+            stackView.topAnchor.constraint(equalToSystemSpacingBelow: keyboardCollectionView.bottomAnchor, multiplier: 2),
+            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2),
             removeCharButton.heightAnchor.constraint(equalToConstant: cellHeight),
             removeCharButton.widthAnchor.constraint(equalToConstant: cellHeight*2),
+            enterButton.heightAnchor.constraint(equalToConstant: cellHeight),
+            enterButton.widthAnchor.constraint(equalToConstant: cellHeight*2),
+            fillView.heightAnchor.constraint(equalToConstant: cellHeight),
+            fillView.widthAnchor.constraint(equalToConstant: cellHeight*2),
         ])
     }
     
     // MARK: - Selectors
+    
+    @objc private func didTapRemoveChar() {
+        delegate?.didTapRemoveChar(self)
+    }
+    
+    @objc private func didTapEnter() {
+        delegate?.didTapEnter(self)
+    }
 }
 
 //MARK: - UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
@@ -154,9 +176,9 @@ extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
             })
         }
         
-        let letter = self.keys[indexPath.section][indexPath.row]
+        let key = self.keys[indexPath.section][indexPath.row]
         
-        delegate?.keyboardView(self, didTapKey: letter)
+        delegate?.keyboardView(self, didTapKey: key.char)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

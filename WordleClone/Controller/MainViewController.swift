@@ -12,16 +12,26 @@ class MainViewController: UIViewController {
     
     // MARK: - Properties
     
-    let answer = "after"
-    private var guesses: [[Cell]] = Array(repeating: Array(repeating: Cell(char: nil, color: UIColor.clear), count: 5), count: 6)
+    private let answers = [
+        "while","could","would","first","sound","light","right","world","large","under","about","other","house","place","point",
+        "small","after","water","black","state","again","light","night","early","paper","party","place","group","right","since","those"
+    ]
+    
+    private var answer = ""
+    private var guesses: [[Cell?]] = Array(repeating: Array(repeating: nil, count: 5), count: 6)
+    private var currentGuessIndex = -1
     
     private let keyboardView = KeyboardView(frame: .zero)
     private let boardView = BoardView(frame: .zero)
+    private var currentRow = 0
     
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.answer = answers.randomElement() ?? "after"
+        print(answer)
         
         navigationController?.navigationBar.isHidden = false
         navigationController?.isNavigationBarHidden = false
@@ -54,16 +64,20 @@ class MainViewController: UIViewController {
         ])
     }
     
-    func boxColor(at x: Int, y: Int) -> UIColor? {
-        guard let char = guesses[x][y].char else {
+    private func colorKeys() {
+        
+    }
+    
+    private func boxColor(at x: Int, y: Int) -> UIColor? {
+        guard let cell = guesses[x][y] else {
             return UIColor.clear
         }
         
         let indexedAnswer = Array(answer)
         
-        if(indexedAnswer[y] == char) {
+        if(indexedAnswer[y] == cell.char) {
             return UIColor.systemGreen
-        } else if (indexedAnswer.contains(char)) {
+        } else if (indexedAnswer.contains(cell.char)) {
             return UIColor.systemOrange
         }
         
@@ -76,42 +90,59 @@ class MainViewController: UIViewController {
 
 extension MainViewController: BoardViewControllerDataSource {
     
-    var currentGuesses: [[Cell]] {
+    var currentGuesses: [[Cell?]] {
         return guesses
     }
 }
 
 extension MainViewController: KeyboardViewDelegate {
+    func didTapEnter(_ v: KeyboardView) {
+        guard let _ = self.guesses[self.currentRow][4] else {
+            print("Nem jo, csinalj itt egy shake animaciot pl.")
+            return
+        }
+        
+        //Color here
+        for i in 0..<self.guesses[self.currentRow].count {
+            let color = self.boxColor(at: self.currentRow, y: i)
+            self.guesses[self.currentRow][i]?.color = color
+        }
+        
+        self.boardView.reloadData()
+        self.currentRow += 1
+        self.currentGuessIndex = -1
+    }
+    
+    func didTapRemoveChar(_ v: KeyboardView) {
+        if(self.currentGuessIndex != -1) {
+            self.guesses[currentRow][currentGuessIndex] = nil
+            self.currentGuessIndex -= 1
+            self.boardView.reloadData()
+        }
+    }
+    
     func keyboardView(_ vc: KeyboardView, didTapKey letter: Character) {
-        var stop = false
-        var endRow = false
-        var row: Int = 0
-        for i in 0..<guesses.count {
-            for j in 0..<guesses[i].count {
-                if guesses[i][j].char == nil {
-                    stop = true
-                    guesses[i][j] = Cell(char: letter, color: UIColor.clear)
+        if currentGuessIndex != 4 {
+            var stop = false
+            for i in 0..<guesses.count {
+                for j in 0..<guesses[i].count {
                     
-                    if j == 4 {
-                        endRow = true
-                        row = i
+                    if guesses[i][j] == nil {
+                        stop = true
+                        guesses[i][j] = Cell(char: letter, color: UIColor.clear)
+                        currentGuessIndex += 1
+                        break
                     }
-                    
+                }
+                
+                if stop {
                     break
                 }
             }
-            
-            if stop {
-                break
-            }
         }
         
-        if endRow {
-            for i in 0..<guesses[row].count {
-                guesses[row][i].color = boxColor(at: row, y: i)
-            }
-        }
-        
+        print(currentGuessIndex)
+        print(currentRow)
         boardView.reloadData()
     }
 }

@@ -60,7 +60,7 @@ class KeyCell: UICollectionViewCell {
     }
     
     func configure(with cell: Cell) {
-        letterLabel.text = cell.char?.uppercased()
+        letterLabel.text = cell.char.uppercased()
         self.backgroundColor = cell.color
     }
     

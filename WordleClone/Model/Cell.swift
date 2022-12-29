@@ -9,6 +9,6 @@ import Foundation
 import UIKit
 
 struct Cell {
-    var char: Character?
+    var char: Character
     var color: UIColor?
 }
