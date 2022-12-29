@@ -33,9 +33,9 @@ class MainViewController: UIViewController {
         let image = UIImage(systemName: "chart.bar.xaxis", withConfiguration: imgConfig)
         let button = UIButton(type: .system)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(didTapSettings), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapStatistics), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.black
+        button.tintColor = UIColor.label
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(didTapSettings), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.black
+        button.tintColor = UIColor.label
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -57,9 +57,9 @@ class MainViewController: UIViewController {
         let image = UIImage(systemName: "questionmark.diamond", withConfiguration: imgConfig)
         let button = UIButton(type: .system)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(didTapSettings), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapRules), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.black
+        button.tintColor = UIColor.label
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -95,7 +95,7 @@ class MainViewController: UIViewController {
     
     // MARK: - UI Setup
     private func setupUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor.systemBackground
         
         self.createTopItems()
         self.navigationController?.navigationBar.isHidden = true
@@ -181,7 +181,9 @@ class MainViewController: UIViewController {
     }
     
     @objc private func didTapRules() {
-        
+        let vc = RulesViewController()
+        self.present(vc, animated: true)
+        print("didtaprues")
     }
     
     @objc private func didTapSettings() {
@@ -225,10 +227,11 @@ extension MainViewController: KeyboardViewDelegate {
         self.colorKeys()
         
         //Check win
-        self.boardView.reloadData()
+        self.boardView.reloadData(won: nil, at: nil)
         self.keyboardView.reloadData()
         if self.checkWin() {
             //Win
+            self.boardView.reloadData(won: true, at: currentRow)
         } else {
             self.currentRow += 1
             self.currentGuessIndex = -1
@@ -239,7 +242,7 @@ extension MainViewController: KeyboardViewDelegate {
         if(self.currentGuessIndex != -1) {
             self.guesses[currentRow][currentGuessIndex] = nil
             self.currentGuessIndex -= 1
-            self.boardView.reloadData()
+            self.boardView.reloadData(won: nil, at: nil)
         }
     }
     
@@ -263,8 +266,6 @@ extension MainViewController: KeyboardViewDelegate {
             }
         }
         
-        print(currentGuessIndex)
-        print(currentRow)
-        boardView.reloadData()
+        boardView.reloadData(won: nil, at: nil)
     }
 }

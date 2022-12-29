@@ -14,7 +14,7 @@ class KeyCell: UICollectionViewCell {
     private let letterLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.black
+        label.textColor = UIColor.label
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
@@ -24,7 +24,6 @@ class KeyCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .systemGray2
         configureUI()
     }
     
@@ -44,7 +43,7 @@ class KeyCell: UICollectionViewCell {
         
         self.backgroundColor = nil
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderColor = UIColor.label.cgColor
         
         NSLayoutConstraint.activate([
             letterLabel.topAnchor.constraint(equalTo: topAnchor),

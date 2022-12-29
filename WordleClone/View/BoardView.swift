@@ -15,8 +15,10 @@ protocol BoardViewDataSource: AnyObject {
 class BoardView: UIView {
     
     // MARK: - Properties
-
+    
     weak var datasource: BoardViewDataSource?
+    private var didWin: Bool = false
+    private var winnerSection: Int = 0
     
     private let boardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -60,7 +62,11 @@ class BoardView: UIView {
         ])
     }
     
-    func reloadData() {
+    func reloadData(won: Bool?, at section: Int?) {
+        if won != nil, let section {
+            self.winnerSection = section
+            self.didWin = true
+        }
         boardCollectionView.reloadData()
     }
     
@@ -101,6 +107,15 @@ extension BoardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayou
         let guesses = datasource?.currentGuesses ?? []
         
         let guessCell = guesses[indexPath.section][indexPath.row] ?? Cell(char: " ")
+        if didWin && guessCell.color == UIColor.systemGreen && self.winnerSection == indexPath.section {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut ,animations: {
+                cell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }) { _ in
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut ,animations: {
+                    cell.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                })
+            }
+        }
         cell.configure(with: guessCell)
         
         return cell

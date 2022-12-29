@@ -39,7 +39,7 @@ class KeyboardView: UIView {
     private let enterButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("ENTER", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.label, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.gray.cgColor
@@ -51,7 +51,7 @@ class KeyboardView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.clear
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderColor = UIColor.label.cgColor
         
         return button
     }()
@@ -59,7 +59,7 @@ class KeyboardView: UIView {
     private let removeCharButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("<", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.label, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.gray.cgColor
@@ -71,7 +71,7 @@ class KeyboardView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.clear
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderColor = UIColor.label.cgColor
         
         return button
     }()
