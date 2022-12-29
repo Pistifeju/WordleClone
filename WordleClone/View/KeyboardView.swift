@@ -121,7 +121,6 @@ extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let key = keys[indexPath.section][indexPath.row]
         let size: CGFloat = (collectionView.frame.size.width - 50) / 10
         
         return CGSize(width: size, height: size * 1.5)
@@ -133,8 +132,10 @@ extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyCell.identifier, for: indexPath) as? KeyCell else { fatalError() }
+        
         let letter = keys[indexPath.section][indexPath.row]
         cell.configure(with: letter)
+        
         return cell
     }
 }

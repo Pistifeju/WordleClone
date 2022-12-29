@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 
 protocol BoardViewControllerDataSource: AnyObject {
-    var currentGuesses: [[Character?]] { get }
-    func boxColor(at indexPath: IndexPath) -> UIColor?
+    var currentGuesses: [[Cell]] { get }
 }
 
 class BoardView: UIView {
@@ -31,8 +30,6 @@ class BoardView: UIView {
     }()
     
     override var intrinsicContentSize: CGSize {
-        let margin: CGFloat = 20
-        
         let width = UIScreen.main.bounds.width
         return CGSize(width: width, height: width + 2)
     }
@@ -97,20 +94,19 @@ extension BoardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        var left: CGFloat = 2
-        var right: CGFloat = 2
+        let left: CGFloat = 2
+        let right: CGFloat = 2
         
         return UIEdgeInsets(top: 2, left: left, bottom: 2, right: right)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyCell.identifier, for: indexPath) as? KeyCell else { fatalError() }
-        cell.backgroundColor = datasource?.boxColor(at: indexPath)
         
         let guesses = datasource?.currentGuesses ?? []
-        if let letter = guesses[indexPath.section][indexPath.row] {
-            cell.configure(with: letter)
-        }
+        let guessCell = guesses[indexPath.section][indexPath.row]
+        cell.configure(with: guessCell)
+        
         return cell
     }
     

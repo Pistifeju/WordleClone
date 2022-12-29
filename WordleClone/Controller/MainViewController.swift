@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     // MARK: - Properties
     
     let answer = "after"
-    private var guesses: [[Character?]] = Array(repeating: Array(repeating: nil, count: 5), count: 6)
+    private var guesses: [[Cell]] = Array(repeating: Array(repeating: Cell(char: nil, color: UIColor.clear), count: 5), count: 6)
     
     private let keyboardView = KeyboardView(frame: .zero)
     private let boardView = BoardView(frame: .zero)
@@ -54,47 +54,49 @@ class MainViewController: UIViewController {
         ])
     }
     
+    func boxColor(at x: Int, y: Int) -> UIColor? {
+        guard let char = guesses[x][y].char else {
+            return UIColor.clear
+        }
+        
+        let indexedAnswer = Array(answer)
+        
+        if(indexedAnswer[y] == char) {
+            return UIColor.green
+        } else if (indexedAnswer.contains(char)) {
+            return UIColor.orange
+        }
+        
+        return UIColor.clear
+    }
     // MARK: - Selectors
 }
 
 // MARK: - BoardViewControllerDataSource
 
 extension MainViewController: BoardViewControllerDataSource {
-    var currentGuesses: [[Character?]] {
-        return guesses
-    }
     
-    func boxColor(at indexPath: IndexPath) -> UIColor? {
-        let rowIndex = indexPath.section
-        
-        let count = guesses[rowIndex].compactMap({ $0 }).count
-        guard count == 5 else {
-            print("DEBUG: At the end")
-            return nil
-        }
-        
-        let indexedAnswer = Array(answer)
-        guard let letter = guesses[indexPath.section][indexPath.row],
-            indexedAnswer.contains(letter) else {
-                return nil
-            }
-        
-        if indexedAnswer[indexPath.row] == letter {
-            return UIColor.systemGreen
-        }
-        
-        return UIColor.orange
+    var currentGuesses: [[Cell]] {
+        return guesses
     }
 }
 
 extension MainViewController: KeyboardViewDelegate {
     func keyboardView(_ vc: KeyboardView, didTapKey letter: Character) {
         var stop = false
+        var endRow = false
+        var row: Int = 0
         for i in 0..<guesses.count {
             for j in 0..<guesses[i].count {
-                if guesses[i][j] == nil {
+                if guesses[i][j].char == nil {
                     stop = true
-                    guesses[i][j] = letter
+                    guesses[i][j] = Cell(char: letter, color: UIColor.clear)
+                    
+                    if j == 4 {
+                        endRow = true
+                        row = i
+                    }
+                    
                     break
                 }
             }
@@ -104,7 +106,12 @@ extension MainViewController: KeyboardViewDelegate {
             }
         }
         
+        if endRow {
+            for i in 0..<guesses[row].count {
+                guesses[row][i].color = boxColor(at: row, y: i)
+            }
+        }
+        
         boardView.reloadData()
-        print(letter)
     }
 }
