@@ -14,14 +14,16 @@ protocol KeyboardViewDelegate: AnyObject {
     func didTapRemoveChar(_ v: KeyboardView)
 }
 
+protocol KeyboardViewDataSource: AnyObject {
+    var keyCells: [[Cell]] { get }
+}
+
 class KeyboardView: UIView {
     
     // MARK: - Properties
     
     weak var delegate: KeyboardViewDelegate?
-    
-    let letters = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
-    private var keys: [[Cell]] = []
+    weak var datasource: KeyboardViewDataSource?
     
     private let keyboardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -92,16 +94,11 @@ class KeyboardView: UIView {
         keyboardCollectionView.delegate = self
         keyboardCollectionView.dataSource = self
         
-        for row in letters {
-            let chars = Array(row)
-            var cells: [Cell] = []
-            for i in 0..<chars.count {
-                cells.append(Cell(char: chars[i]))
-            }
-            self.keys.append(cells)
-        }
-        
         configureUI()
+    }
+    
+    func reloadData() {
+        keyboardCollectionView.reloadData()
     }
     
     required init?(coder: NSCoder) {
@@ -133,16 +130,17 @@ class KeyboardView: UIView {
             keyboardCollectionView.heightAnchor.constraint(equalToConstant: cellHeight * 3 + 15)
         ])
         
+        let buttonWidth = (width - 64) / 3
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalToSystemSpacingBelow: keyboardCollectionView.bottomAnchor, multiplier: 2),
-            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2),
+            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 4),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 4),
             removeCharButton.heightAnchor.constraint(equalToConstant: cellHeight),
-            removeCharButton.widthAnchor.constraint(equalToConstant: cellHeight*2),
+            removeCharButton.widthAnchor.constraint(equalToConstant: buttonWidth),
             enterButton.heightAnchor.constraint(equalToConstant: cellHeight),
-            enterButton.widthAnchor.constraint(equalToConstant: cellHeight*2),
+            enterButton.widthAnchor.constraint(equalToConstant: buttonWidth),
             fillView.heightAnchor.constraint(equalToConstant: cellHeight),
-            fillView.widthAnchor.constraint(equalToConstant: cellHeight*2),
+            fillView.widthAnchor.constraint(equalToConstant: buttonWidth),
         ])
     }
     
@@ -176,15 +174,15 @@ extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
             })
         }
         
-        let key = self.keys[indexPath.section][indexPath.row]
+        let key = datasource?.keyCells[indexPath.section][indexPath.row]
         
-        delegate?.keyboardView(self, didTapKey: key.char)
+        delegate?.keyboardView(self, didTapKey: key?.char ?? " ")
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         let cellWidth = (collectionView.frame.size.width - 50) / 10
-        let cellCount: CGFloat = CGFloat(keys[section].count)
+        let cellCount: CGFloat = CGFloat(datasource?.keyCells[section].count ?? 0)
         
         let totalWidth = cellWidth * cellCount
         let totalSpacingWidth = 5 * (cellCount - 1)
@@ -196,7 +194,7 @@ extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return keys.count
+        return datasource?.keyCells.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -207,14 +205,14 @@ extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return keys[section].count
+        return datasource?.keyCells[section].count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyCell.identifier, for: indexPath) as? KeyCell else { fatalError() }
         
-        let letter = keys[indexPath.section][indexPath.row]
-        cell.configure(with: letter)
+        let cellToConfigureWith = datasource?.keyCells[indexPath.section][indexPath.row] ?? Cell(char: " ")
+        cell.configure(with: cellToConfigureWith)
         
         return cell
     }

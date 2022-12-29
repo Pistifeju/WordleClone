@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol BoardViewControllerDataSource: AnyObject {
+protocol BoardViewDataSource: AnyObject {
     var currentGuesses: [[Cell?]] { get }
 }
 
@@ -16,7 +16,7 @@ class BoardView: UIView {
     
     // MARK: - Properties
 
-    weak var datasource: BoardViewControllerDataSource?
+    weak var datasource: BoardViewDataSource?
     
     private let boardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
