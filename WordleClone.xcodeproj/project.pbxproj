@@ -27,6 +27,7 @@
 		B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A9295F378400C046C1 /* WebViewerController.swift */; };
 		B744C0AC295F536900C046C1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0AB295F536900C046C1 /* AlertManager.swift */; };
 		B744C0AF295F67AB00C046C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */; };
+		B75FC293295FA13100B535CF /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC292295FA13100B535CF /* Validator.swift */; };
 		B76496C0295F709700F3D229 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496BF295F709700F3D229 /* AuthService.swift */; };
 		B76496C2295F721600F3D229 /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C1295F721600F3D229 /* RegisterUserRequest.swift */; };
 		B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */; };
@@ -57,6 +58,7 @@
 		B744C0A9295F378400C046C1 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		B744C0AB295F536900C046C1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B75FC292295FA13100B535CF /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		B76496BF295F709700F3D229 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B76496C1295F721600F3D229 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				B76496BF295F709700F3D229 /* AuthService.swift */,
 				B744C0AB295F536900C046C1 /* AlertManager.swift */,
+				B75FC292295FA13100B535CF /* Validator.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				B744C07C295B92B400C046C1 /* MainViewController.swift in Sources */,
 				B744C0A6295E5C8200C046C1 /* CustomAuthTextField.swift in Sources */,
 				B744C0A4295E575900C046C1 /* AuthHeaderView.swift in Sources */,
+				B75FC293295FA13100B535CF /* Validator.swift in Sources */,
 				B744C092295B960800C046C1 /* KeyboardView.swift in Sources */,
 				B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */,
 				B744C0A1295E534200C046C1 /* ForgotPasswordViewController.swift in Sources */,

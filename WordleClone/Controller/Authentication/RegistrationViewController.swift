@@ -17,6 +17,7 @@ class RegistrationViewController: UIViewController {
     private let usernameField: CustomAuthTextField = CustomAuthTextField(textFieldType: CustomAuthTextFieldType.username)
     private let emailField: CustomAuthTextField = CustomAuthTextField(textFieldType: CustomAuthTextFieldType.email)
     private let passwordField: CustomAuthTextField = CustomAuthTextField(textFieldType: CustomAuthTextFieldType.password)
+    private let passwordAgainField: CustomAuthTextField = CustomAuthTextField(textFieldType: CustomAuthTextFieldType.password)
     
     private let signUpButton: CustomAuthButton = CustomAuthButton(title: "Sign Up", hasBackground: true, fontSize: .big)
     private let signInButton: CustomAuthButton = CustomAuthButton(title: "Already have an account? Sign In.", fontSize: .medium)
@@ -54,6 +55,8 @@ class RegistrationViewController: UIViewController {
         self.signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         self.signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
         
+        self.passwordAgainField.placeholder = "Password Again"
+        
         self.setupUI()
     }
     
@@ -65,6 +68,7 @@ class RegistrationViewController: UIViewController {
         view.addSubview(usernameField)
         view.addSubview(emailField)
         view.addSubview(passwordField)
+        view.addSubview(passwordAgainField)
         view.addSubview(signUpButton)
         view.addSubview(termsTextView)
         view.addSubview(signInButton)
@@ -93,11 +97,16 @@ class RegistrationViewController: UIViewController {
             passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordField.heightAnchor.constraint(equalToConstant: 55),
             passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
+            
+            passwordAgainField.topAnchor.constraint(equalToSystemSpacingBelow: passwordField.bottomAnchor, multiplier: 2),
+            passwordAgainField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordAgainField.heightAnchor.constraint(equalToConstant: 55),
+            passwordAgainField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
         ])
         
         //Buttons
         NSLayoutConstraint.activate([
-            signUpButton.topAnchor.constraint(equalToSystemSpacingBelow: passwordField.bottomAnchor, multiplier: 2),
+            signUpButton.topAnchor.constraint(equalToSystemSpacingBelow: passwordAgainField.bottomAnchor, multiplier: 2),
             signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             signUpButton.heightAnchor.constraint(equalToConstant: 55),
             signUpButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
@@ -120,7 +129,34 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc private func didTapSignUp() {
+        guard let username = usernameField.text, let email = emailField.text, let password = passwordField.text, let passwordAgain = passwordAgainField.text, !username.isEmpty, !email.isEmpty, !password.isEmpty, !passwordAgain.isEmpty else {
+            AlertManager.showDidntFillTextFieldAlert(on: self)
+            return
+        }
         
+        Validator.validateRegistration(email: emailField, password: password, passwordAgain: passwordAgain, VC: self)
+        
+        let registerUserRequest = RegisterUserRequest(username: username, password: password, email: email)
+        
+        AuthService.shared.registerUser(with: registerUserRequest) { [weak self] wasRegistered, error in
+            guard let strongSelf = self else { return }
+            
+            if let error = error {
+                AlertManager.showRegistrationErrorAlert(on: strongSelf, with: error)
+                return
+            }
+            
+            if wasRegistered {
+                if let sceneDelegate = strongSelf.view.window?.windowScene?.delegate as? SceneDelegate {
+                    sceneDelegate.checkAuthentication()
+                }
+            } else {
+                AlertManager.showRegistrationErrorAlert(on: strongSelf)
+                return
+            }
+        }
+        
+        print(password)
     }
     
     @objc private func didTapForgotPassword() {

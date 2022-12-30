@@ -30,8 +30,12 @@ extension AlertManager {
         self.showBasicAlert(on: VC, with: "Invalid Password", and: "Please enter a valid password.")
     }
     
-    public static func showInvalidUsernameAlert(on VC: UIViewController) {
-        self.showBasicAlert(on: VC, with: "Invalid Username", and: "Please enter a valid username.")
+    public static func showDidntFillTextFieldAlert(on VC: UIViewController) {
+        self.showBasicAlert(on: VC, with: "Please fill in every field.", and: nil)
+    }
+    
+    public static func showPasswordDontMatchAlert(on VC: UIViewController) {
+        self.showBasicAlert(on: VC, with: "The passwords do not match.", and: "Please try again.")
     }
 }
 
@@ -39,6 +43,10 @@ extension AlertManager {
 extension AlertManager {
     public static func showRegistrationErrorAlert(on VC: UIViewController, with error: Error) {
         self.showBasicAlert(on: VC, with: "Registration Error", and: (error.localizedDescription)) //Error is passed from Firebase
+    }
+    
+    public static func showRegistrationErrorAlert(on VC: UIViewController) {
+        self.showBasicAlert(on: VC, with: "Unknown Registration Error", and: nil) 
     }
 }
 

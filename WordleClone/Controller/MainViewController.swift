@@ -28,41 +28,9 @@ class MainViewController: UIViewController {
     private let boardView = BoardView(frame: .zero)
     private var currentRow = 0
     
-    private lazy var statisticsButton: UIButton = {
-        let imgConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium, scale: .default)
-        let image = UIImage(systemName: "chart.bar.xaxis", withConfiguration: imgConfig)
-        let button = UIButton(type: .system)
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(didTapStatistics), for: .touchUpInside)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.label
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var settingsButton: UIButton = {
-        let imgConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium, scale: .default)
-        let image = UIImage(systemName: "gearshape", withConfiguration: imgConfig)
-        let button = UIButton(type: .system)
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(didTapLogout), for: .touchUpInside)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.label
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var gameRulesButton: UIButton = {
-        let imgConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium, scale: .default)
-        let image = UIImage(systemName: "questionmark.diamond", withConfiguration: imgConfig)
-        let button = UIButton(type: .system)
-        button.setImage(image, for: .normal)
-        
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.label
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private var settingsButton: MainViewTopButton = MainViewTopButton(image: "gearshape")
+    private var gameRulesButton: MainViewTopButton = MainViewTopButton(image: "questionmark.diamond")
+    private var statisticsButton: MainViewTopButton = MainViewTopButton(image: "chart.bar.xaxis")
     
     // MARK: - LifeCycle
     
@@ -86,9 +54,9 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.backgroundColor = .white
         
-        settingsButton.addTarget(self, action: #selector(didTapRules), for: .touchUpInside)
-        gameRulesButton.addTarget(self, action: #selector(didTapRules), for: .touchUpInside)
-        statisticsButton.addTarget(self, action: #selector(didTapRules), for: .touchUpInside)
+        settingsButton.addTarget(self, action: #selector(didTapSettings(sender:)), for: .touchUpInside)
+        gameRulesButton.addTarget(self, action: #selector(didTapRules(sender:)), for: .touchUpInside)
+        statisticsButton.addTarget(self, action: #selector(didTapStatistics(sender:)), for: .touchUpInside)
         
         keyboardView.delegate = self
         keyboardView.datasource = self
@@ -178,20 +146,46 @@ class MainViewController: UIViewController {
         return countGreens == 5
         
     }
+    
+    private func animateButtonTap(button: UIButton) {
+        UIView.animate(withDuration: 0.25,
+                       animations: {
+            //Fade-out
+            button.layer.opacity = 0.5
+        }) { (completed) in
+            UIView.animate(withDuration: 0.25,
+                           animations: {
+                //Fade-out
+                button.layer.opacity = 1
+            })
+        }
+    }
     // MARK: - Selectors
     
-    @objc private func didTapStatistics() {
-        print("stats")
+    @objc private func didTapStatistics(sender: UIButton) {
+        self.animateButtonTap(button: sender)
     }
     
-    @objc private func didTapRules() {
+    @objc private func didTapRules(sender: UIButton) {
+        self.animateButtonTap(button: sender)
         let vc = RulesViewController()
         self.present(vc, animated: true)
         print("didtaprues")
     }
     
-    @objc private func didTapSettings() {
-        
+    @objc private func didTapSettings(sender: UIButton) {
+        self.animateButtonTap(button: sender)
+        AuthService.shared.signOut { [weak self] error in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                AlertManager.showLogoutErrorAlert(on: strongSelf, with: error)
+                return
+            }
+            
+            if let sceneDelegate = strongSelf.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            }
+        }
     }
     
     @objc private func didTapLogout() {

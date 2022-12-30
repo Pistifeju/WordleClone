@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class MainViewTopButton: UIButton {
-    init(with title: String, image: String) {
+    init(image: String) {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         let imgConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .medium, scale: .default)
