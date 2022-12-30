@@ -1,0 +1,6 @@
+framework module Pods_WordleClone {
+  umbrella header "Pods-WordleClone-umbrella.h"
+
+  export *
+  module * { export * }
+}

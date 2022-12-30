@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// A struct for both the Board collection view cells and the Keyboard collection view cells.
 struct Cell {
     var char: Character
     var color: UIColor?

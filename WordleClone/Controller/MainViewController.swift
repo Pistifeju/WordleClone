@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
         let image = UIImage(systemName: "gearshape", withConfiguration: imgConfig)
         let button = UIButton(type: .system)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(didTapSettings), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapLogout), for: .touchUpInside)
         button.setTitleColor(UIColor.black, for: .normal)
         button.tintColor = UIColor.label
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ class MainViewController: UIViewController {
         let image = UIImage(systemName: "questionmark.diamond", withConfiguration: imgConfig)
         let button = UIButton(type: .system)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(didTapRules), for: .touchUpInside)
+        
         button.setTitleColor(UIColor.black, for: .normal)
         button.tintColor = UIColor.label
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +85,10 @@ class MainViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.backgroundColor = .white
+        
+        settingsButton.addTarget(self, action: #selector(didTapRules), for: .touchUpInside)
+        gameRulesButton.addTarget(self, action: #selector(didTapRules), for: .touchUpInside)
+        statisticsButton.addTarget(self, action: #selector(didTapRules), for: .touchUpInside)
         
         keyboardView.delegate = self
         keyboardView.datasource = self
@@ -188,6 +192,20 @@ class MainViewController: UIViewController {
     
     @objc private func didTapSettings() {
         
+    }
+    
+    @objc private func didTapLogout() {
+        AuthService.shared.signOut { [weak self] error in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                AlertManager.showLogoutErrorAlert(on: strongSelf, with: error)
+                return
+            }
+            
+            if let sceneDelegate = strongSelf.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            }
+        }
     }
 }
 

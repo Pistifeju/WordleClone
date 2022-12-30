@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// A singleton class for alerts.
 class AlertManager {
     private static func showBasicAlert(on VC: UIViewController, with title: String, and message: String?) {
         

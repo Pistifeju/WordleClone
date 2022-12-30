@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80BC14FAD141E97128994EE2 /* Pods_WordleClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDA3379AF958B0041F1F198 /* Pods_WordleClone.framework */; };
 		B744C078295B92B400C046C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C077295B92B400C046C1 /* AppDelegate.swift */; };
 		B744C07A295B92B400C046C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C079295B92B400C046C1 /* SceneDelegate.swift */; };
 		B744C07C295B92B400C046C1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C07B295B92B400C046C1 /* MainViewController.swift */; };
@@ -25,9 +26,16 @@
 		B744C0A8295E5F2700C046C1 /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A7295E5F2700C046C1 /* CustomAuthButton.swift */; };
 		B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A9295F378400C046C1 /* WebViewerController.swift */; };
 		B744C0AC295F536900C046C1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0AB295F536900C046C1 /* AlertManager.swift */; };
+		B744C0AF295F67AB00C046C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */; };
+		B76496C0295F709700F3D229 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496BF295F709700F3D229 /* AuthService.swift */; };
+		B76496C2295F721600F3D229 /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C1295F721600F3D229 /* RegisterUserRequest.swift */; };
+		B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */; };
+		B76496C6295F81CC00F3D229 /* MainViewTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C5295F81CC00F3D229 /* MainViewTopButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B21708DFC8814725F9FCA43 /* Pods-WordleClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordleClone.release.xcconfig"; path = "Target Support Files/Pods-WordleClone/Pods-WordleClone.release.xcconfig"; sourceTree = "<group>"; };
+		3EDA3379AF958B0041F1F198 /* Pods_WordleClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WordleClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B744C074295B92B400C046C1 /* WordleClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordleClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B744C077295B92B400C046C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B744C079295B92B400C046C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +56,12 @@
 		B744C0A7295E5F2700C046C1 /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
 		B744C0A9295F378400C046C1 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		B744C0AB295F536900C046C1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B76496BF295F709700F3D229 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B76496C1295F721600F3D229 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
+		B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
+		B76496C5295F81CC00F3D229 /* MainViewTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTopButton.swift; sourceTree = "<group>"; };
+		EF2E1AD3BB6E14FF07417C47 /* Pods-WordleClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordleClone.debug.xcconfig"; path = "Target Support Files/Pods-WordleClone/Pods-WordleClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,17 +69,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80BC14FAD141E97128994EE2 /* Pods_WordleClone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F241EE81C64514723D2F37C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EDA3379AF958B0041F1F198 /* Pods_WordleClone.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A7255CA3A217157F48041D73 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF2E1AD3BB6E14FF07417C47 /* Pods-WordleClone.debug.xcconfig */,
+				0B21708DFC8814725F9FCA43 /* Pods-WordleClone.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B744C06B295B92B400C046C1 = {
 			isa = PBXGroup;
 			children = (
 				B744C076295B92B400C046C1 /* WordleClone */,
 				B744C075295B92B400C046C1 /* Products */,
+				A7255CA3A217157F48041D73 /* Pods */,
+				8F241EE81C64514723D2F37C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +141,7 @@
 				B744C091295B960800C046C1 /* KeyboardView.swift */,
 				B744C093295BAE0200C046C1 /* KeyCell.swift */,
 				B744C095295CF6BE00C046C1 /* BoardView.swift */,
+				B76496C5295F81CC00F3D229 /* MainViewTopButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -115,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				B744C097295D097400C046C1 /* Cell.swift */,
+				B76496C1295F721600F3D229 /* RegisterUserRequest.swift */,
+				B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,6 +159,7 @@
 		B744C090295B946D00C046C1 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				B76496BF295F709700F3D229 /* AuthService.swift */,
 				B744C0AB295F536900C046C1 /* AlertManager.swift */,
 			);
 			path = API;
@@ -151,6 +189,7 @@
 		B744C0AD295F568F00C046C1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */,
 				B744C077295B92B400C046C1 /* AppDelegate.swift */,
 				B744C079295B92B400C046C1 /* SceneDelegate.swift */,
 				B744C080295B92B500C046C1 /* Assets.xcassets */,
@@ -166,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B744C088295B92B500C046C1 /* Build configuration list for PBXNativeTarget "WordleClone" */;
 			buildPhases = (
+				85CBC2D60518AF8E27E5766F /* [CP] Check Pods Manifest.lock */,
 				B744C070295B92B400C046C1 /* Sources */,
 				B744C071295B92B400C046C1 /* Frameworks */,
 				B744C072295B92B400C046C1 /* Resources */,
+				B6D6A295C810C584627B367C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -219,10 +260,53 @@
 			files = (
 				B744C084295B92B500C046C1 /* LaunchScreen.storyboard in Resources */,
 				B744C081295B92B500C046C1 /* Assets.xcassets in Resources */,
+				B744C0AF295F67AB00C046C1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		85CBC2D60518AF8E27E5766F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WordleClone-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6D6A295C810C584627B367C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WordleClone/Pods-WordleClone-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WordleClone/Pods-WordleClone-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WordleClone/Pods-WordleClone-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B744C070295B92B400C046C1 /* Sources */ = {
@@ -234,15 +318,19 @@
 				B744C0A6295E5C8200C046C1 /* CustomAuthTextField.swift in Sources */,
 				B744C0A4295E575900C046C1 /* AuthHeaderView.swift in Sources */,
 				B744C092295B960800C046C1 /* KeyboardView.swift in Sources */,
+				B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */,
 				B744C0A1295E534200C046C1 /* ForgotPasswordViewController.swift in Sources */,
 				B744C098295D097400C046C1 /* Cell.swift in Sources */,
 				B744C0A8295E5F2700C046C1 /* CustomAuthButton.swift in Sources */,
+				B76496C6295F81CC00F3D229 /* MainViewTopButton.swift in Sources */,
 				B744C09D295E532700C046C1 /* RegistrationViewController.swift in Sources */,
 				B744C078295B92B400C046C1 /* AppDelegate.swift in Sources */,
 				B744C096295CF6BE00C046C1 /* BoardView.swift in Sources */,
 				B744C07A295B92B400C046C1 /* SceneDelegate.swift in Sources */,
 				B744C09A295E2B1300C046C1 /* RulesViewController.swift in Sources */,
 				B744C09F295E533500C046C1 /* LoginViewController.swift in Sources */,
+				B76496C0295F709700F3D229 /* AuthService.swift in Sources */,
+				B76496C2295F721600F3D229 /* RegisterUserRequest.swift in Sources */,
 				B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */,
 				B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */,
 			);
@@ -378,6 +466,7 @@
 		};
 		B744C089295B92B500C046C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF2E1AD3BB6E14FF07417C47 /* Pods-WordleClone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -386,6 +475,7 @@
 				DEVELOPMENT_TEAM = 2V54FBNXT7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WordleClone/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Wordlee;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -405,6 +495,7 @@
 		};
 		B744C08A295B92B500C046C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B21708DFC8814725F9FCA43 /* Pods-WordleClone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -413,6 +504,7 @@
 				DEVELOPMENT_TEAM = 2V54FBNXT7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WordleClone/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Wordlee;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

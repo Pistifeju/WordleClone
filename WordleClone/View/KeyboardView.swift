@@ -166,7 +166,7 @@ extension KeyboardView: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
         
         if key?.color != UIColor.systemGray2 {
             UIView.animate(withDuration: 0.3,
-                           animations: {
+                           animations: { 
                 //Fade-out
                 cell?.alpha = 0.5
             }) { (completed) in
