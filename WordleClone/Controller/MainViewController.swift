@@ -229,8 +229,8 @@ extension MainViewController: KeyboardViewDelegate {
         //Check win
         self.boardView.reloadData(won: nil, at: nil)
         self.keyboardView.reloadData()
+        
         if self.checkWin() {
-            //Win
             self.boardView.reloadData(won: true, at: currentRow)
         } else {
             self.currentRow += 1

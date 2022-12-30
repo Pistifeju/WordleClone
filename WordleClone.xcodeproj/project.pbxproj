@@ -17,6 +17,13 @@
 		B744C096295CF6BE00C046C1 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C095295CF6BE00C046C1 /* BoardView.swift */; };
 		B744C098295D097400C046C1 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C097295D097400C046C1 /* Cell.swift */; };
 		B744C09A295E2B1300C046C1 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C099295E2B1300C046C1 /* RulesViewController.swift */; };
+		B744C09D295E532700C046C1 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C09C295E532700C046C1 /* RegistrationViewController.swift */; };
+		B744C09F295E533500C046C1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C09E295E533500C046C1 /* LoginViewController.swift */; };
+		B744C0A1295E534200C046C1 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A0295E534200C046C1 /* ForgotPasswordViewController.swift */; };
+		B744C0A4295E575900C046C1 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A3295E575900C046C1 /* AuthHeaderView.swift */; };
+		B744C0A6295E5C8200C046C1 /* CustomAuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A5295E5C8200C046C1 /* CustomAuthTextField.swift */; };
+		B744C0A8295E5F2700C046C1 /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A7295E5F2700C046C1 /* CustomAuthButton.swift */; };
+		B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A9295F378400C046C1 /* WebViewerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,13 @@
 		B744C095295CF6BE00C046C1 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		B744C097295D097400C046C1 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		B744C099295E2B1300C046C1 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		B744C09C295E532700C046C1 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		B744C09E295E533500C046C1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B744C0A0295E534200C046C1 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		B744C0A3295E575900C046C1 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
+		B744C0A5295E5C8200C046C1 /* CustomAuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextField.swift; sourceTree = "<group>"; };
+		B744C0A7295E5F2700C046C1 /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
+		B744C0A9295F378400C046C1 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +94,7 @@
 		B744C08D295B943D00C046C1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B744C09B295E52DE00C046C1 /* Authentication */,
 				B744C07B295B92B400C046C1 /* MainViewController.swift */,
 				B744C099295E2B1300C046C1 /* RulesViewController.swift */,
 			);
@@ -89,6 +104,7 @@
 		B744C08E295B944500C046C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B744C0A2295E574F00C046C1 /* Authentication */,
 				B744C091295B960800C046C1 /* KeyboardView.swift */,
 				B744C093295BAE0200C046C1 /* KeyCell.swift */,
 				B744C095295CF6BE00C046C1 /* BoardView.swift */,
@@ -109,6 +125,27 @@
 			children = (
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		B744C09B295E52DE00C046C1 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B744C09C295E532700C046C1 /* RegistrationViewController.swift */,
+				B744C09E295E533500C046C1 /* LoginViewController.swift */,
+				B744C0A0295E534200C046C1 /* ForgotPasswordViewController.swift */,
+				B744C0A9295F378400C046C1 /* WebViewerController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		B744C0A2295E574F00C046C1 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B744C0A3295E575900C046C1 /* AuthHeaderView.swift */,
+				B744C0A5295E5C8200C046C1 /* CustomAuthTextField.swift */,
+				B744C0A7295E5F2700C046C1 /* CustomAuthButton.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,12 +219,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				B744C07C295B92B400C046C1 /* MainViewController.swift in Sources */,
+				B744C0A6295E5C8200C046C1 /* CustomAuthTextField.swift in Sources */,
+				B744C0A4295E575900C046C1 /* AuthHeaderView.swift in Sources */,
 				B744C092295B960800C046C1 /* KeyboardView.swift in Sources */,
+				B744C0A1295E534200C046C1 /* ForgotPasswordViewController.swift in Sources */,
 				B744C098295D097400C046C1 /* Cell.swift in Sources */,
+				B744C0A8295E5F2700C046C1 /* CustomAuthButton.swift in Sources */,
+				B744C09D295E532700C046C1 /* RegistrationViewController.swift in Sources */,
 				B744C078295B92B400C046C1 /* AppDelegate.swift in Sources */,
 				B744C096295CF6BE00C046C1 /* BoardView.swift in Sources */,
 				B744C07A295B92B400C046C1 /* SceneDelegate.swift in Sources */,
 				B744C09A295E2B1300C046C1 /* RulesViewController.swift in Sources */,
+				B744C09F295E533500C046C1 /* LoginViewController.swift in Sources */,
+				B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */,
 				B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
