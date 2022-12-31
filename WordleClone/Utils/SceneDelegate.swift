@@ -45,7 +45,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     self?.window?.layer.opacity = 1
                 }
             }
-
         }
     }
 }

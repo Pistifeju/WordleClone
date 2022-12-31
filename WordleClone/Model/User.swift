@@ -16,3 +16,10 @@ struct User {
         self.userUID = UID
     }
 }
+
+
+struct UserStats {
+    var winw: Int
+    var losses: Int
+    let posts: Int
+}

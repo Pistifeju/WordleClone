@@ -15,10 +15,6 @@ class MainTabController: UITabBarController {
         didSet {
             guard let user = user else { return }
             configureViewControllers(with: user)
-            
-            print(user.username)
-            print(user.email)
-            print(user.userUID)
         }
     }
     
@@ -50,7 +46,8 @@ class MainTabController: UITabBarController {
         view.backgroundColor = .white
         tabBar.isHidden = false
         tabBar.isTranslucent = false
-        tabBar.tintColor = .black
+        tabBar.tintColor = .label
+        tabBar.backgroundColor = .systemBackground
     }
     
     private func configureViewControllers(with user: User) {
@@ -72,7 +69,7 @@ class MainTabController: UITabBarController {
             let nav = UINavigationController(rootViewController: rootViewController)
             nav.tabBarItem.image = unselectedImage
             nav.tabBarItem.selectedImage = selectedImage
-            nav.navigationBar.tintColor = .black
+            nav.navigationBar.tintColor = .label
             nav.navigationBar.isTranslucent = true
             nav.navigationBar.isHidden = false
             

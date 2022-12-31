@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
         "small","after","water","black","state","again","light","night","early","paper","party","place","group","right","since","those"
     ]
     
+    private var wordle: Wordle
     private var answer = ""
     private var guesses: [[Cell?]] = Array(repeating: Array(repeating: nil, count: 5), count: 6)
     private var currentGuessIndex = -1
@@ -33,6 +34,15 @@ class GameViewController: UIViewController {
     private var statisticsButton: MainViewTopButton = MainViewTopButton(image: "chart.bar.xaxis")
     
     // MARK: - LifeCycle
+    
+    init(with wordle: Wordle) {
+        self.wordle = wordle
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

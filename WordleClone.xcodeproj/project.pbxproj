@@ -33,6 +33,7 @@
 		B75FC29929607E3600B535CF /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29829607E3600B535CF /* StatsViewController.swift */; };
 		B75FC29C29607E7000B535CF /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29B29607E7000B535CF /* LeaderboardViewController.swift */; };
 		B75FC29E2960805D00B535CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29D2960805D00B535CF /* User.swift */; };
+		B75FC2A029608C0A00B535CF /* Wordle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29F29608C0A00B535CF /* Wordle.swift */; };
 		B76496C0295F709700F3D229 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496BF295F709700F3D229 /* AuthService.swift */; };
 		B76496C2295F721600F3D229 /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C1295F721600F3D229 /* RegisterUserRequest.swift */; };
 		B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */; };
@@ -69,6 +70,7 @@
 		B75FC29829607E3600B535CF /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		B75FC29B29607E7000B535CF /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		B75FC29D2960805D00B535CF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B75FC29F29608C0A00B535CF /* Wordle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle.swift; sourceTree = "<group>"; };
 		B76496BF295F709700F3D229 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B76496C1295F721600F3D229 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				B76496C1295F721600F3D229 /* RegisterUserRequest.swift */,
 				B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */,
 				B75FC29D2960805D00B535CF /* User.swift */,
+				B75FC29F29608C0A00B535CF /* Wordle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				B744C092295B960800C046C1 /* KeyboardView.swift in Sources */,
 				B75FC29C29607E7000B535CF /* LeaderboardViewController.swift in Sources */,
 				B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */,
+				B75FC2A029608C0A00B535CF /* Wordle.swift in Sources */,
 				B744C0A1295E534200C046C1 /* ForgotPasswordViewController.swift in Sources */,
 				B744C098295D097400C046C1 /* Cell.swift in Sources */,
 				B75FC29929607E3600B535CF /* StatsViewController.swift in Sources */,
