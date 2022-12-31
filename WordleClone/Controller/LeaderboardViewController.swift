@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  LeaderboardViewController.swift
 //  WordleClone
 //
 //  Created by István Juhász on 2022. 12. 31..
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class LeaderboardViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     
     // MARK: - UI Setup
     private func setupUI() {
-        self.view.backgroundColor = .systemBlue
+        self.view.backgroundColor = .yellow
         
         NSLayoutConstraint.activate([
             

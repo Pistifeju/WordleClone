@@ -20,7 +20,7 @@ class AuthService {
     ///   - userRequest: The users information (email, password, username)
     ///   - completion: A completion with two values (Bool, Error?)
     ///   - Bool: Determines if the user was registered and saved in the database correctly.
-    ///   - Error?: An optional error if firebase provides one.
+    ///   - Error?: An optional error from firebase.
     public func registerUser(with userRequest: RegisterUserRequest, completion: @escaping(Bool, Error?) -> Void) {
         
         let username = userRequest.username
@@ -52,6 +52,11 @@ class AuthService {
         }
     }
     
+    /// A method to sign in the user.
+    /// - Parameters:
+    ///   - userRequest: The users information (email, password)
+    ///   - completion: A completion with one value (Error?)
+    ///   - Error?: An optional error from firebase.
     public func signIn(with userRequest: LoginUserRequest, completion: @escaping(Error?) -> Void) {
         
         let email = userRequest.email
@@ -67,6 +72,9 @@ class AuthService {
         }
     }
     
+    /// A method to sign out the user.
+    /// - Parameter completion: A completion with one value (Error?)
+    /// - Error?: An optional error from firebase.
     public func signOut(completion: @escaping(Error?) -> Void) {
         do {
             try Auth.auth().signOut()
@@ -76,9 +84,35 @@ class AuthService {
         }
     }
     
+    /// A method to send a password reset if the user forgot their password.
+    /// - Parameters:
+    ///   - email: The user email.
+    ///   - completion: A completion with one value (Error?)
+    ///   - Error?:  An optional error from firebase.
     public func forgotPassword(with email: String, completion: @escaping(Error?) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             completion(error)
+        }
+    }
+    
+    /// A method to fetch the signed in user.
+    /// - Parameter completion: A completion with two values (User?, Error?)
+    /// - User?: An optinal user model, with the currently signed in user's information.
+    /// - Error?: An optional error from firebase.
+    public func fetchUser(completion: @escaping(User?, Error?) -> Void) {
+        guard let userUID = Auth.auth().currentUser?.uid else { return }
+        
+        self.db.collection("users").document(userUID).getDocument { snapshot, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data = snapshot?.data() else { return }
+            
+            let user = User(dictionary: data, withUID: userUID)
+            
+            completion(user, nil)
         }
     }
 }

@@ -10,7 +10,7 @@
 		80BC14FAD141E97128994EE2 /* Pods_WordleClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDA3379AF958B0041F1F198 /* Pods_WordleClone.framework */; };
 		B744C078295B92B400C046C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C077295B92B400C046C1 /* AppDelegate.swift */; };
 		B744C07A295B92B400C046C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C079295B92B400C046C1 /* SceneDelegate.swift */; };
-		B744C07C295B92B400C046C1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C07B295B92B400C046C1 /* MainViewController.swift */; };
+		B744C07C295B92B400C046C1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C07B295B92B400C046C1 /* GameViewController.swift */; };
 		B744C081295B92B500C046C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B744C080295B92B500C046C1 /* Assets.xcassets */; };
 		B744C084295B92B500C046C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B744C082295B92B500C046C1 /* LaunchScreen.storyboard */; };
 		B744C092295B960800C046C1 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C091295B960800C046C1 /* KeyboardView.swift */; };
@@ -28,6 +28,11 @@
 		B744C0AC295F536900C046C1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0AB295F536900C046C1 /* AlertManager.swift */; };
 		B744C0AF295F67AB00C046C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */; };
 		B75FC293295FA13100B535CF /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC292295FA13100B535CF /* Validator.swift */; };
+		B75FC29529607CE100B535CF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29429607CE100B535CF /* MainViewController.swift */; };
+		B75FC29729607D6E00B535CF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29629607D6E00B535CF /* MainTabController.swift */; };
+		B75FC29929607E3600B535CF /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29829607E3600B535CF /* StatsViewController.swift */; };
+		B75FC29C29607E7000B535CF /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29B29607E7000B535CF /* LeaderboardViewController.swift */; };
+		B75FC29E2960805D00B535CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29D2960805D00B535CF /* User.swift */; };
 		B76496C0295F709700F3D229 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496BF295F709700F3D229 /* AuthService.swift */; };
 		B76496C2295F721600F3D229 /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C1295F721600F3D229 /* RegisterUserRequest.swift */; };
 		B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */; };
@@ -40,7 +45,7 @@
 		B744C074295B92B400C046C1 /* WordleClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordleClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B744C077295B92B400C046C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B744C079295B92B400C046C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B744C07B295B92B400C046C1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B744C07B295B92B400C046C1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B744C080295B92B500C046C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B744C083295B92B500C046C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B744C085295B92B500C046C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +64,11 @@
 		B744C0AB295F536900C046C1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B75FC292295FA13100B535CF /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		B75FC29429607CE100B535CF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B75FC29629607D6E00B535CF /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		B75FC29829607E3600B535CF /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		B75FC29B29607E7000B535CF /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		B75FC29D2960805D00B535CF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B76496BF295F709700F3D229 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B76496C1295F721600F3D229 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
@@ -129,9 +139,12 @@
 		B744C08D295B943D00C046C1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B75FC29A29607E3D00B535CF /* Game */,
 				B744C09B295E52DE00C046C1 /* Authentication */,
-				B744C07B295B92B400C046C1 /* MainViewController.swift */,
-				B744C099295E2B1300C046C1 /* RulesViewController.swift */,
+				B75FC29429607CE100B535CF /* MainViewController.swift */,
+				B75FC29629607D6E00B535CF /* MainTabController.swift */,
+				B75FC29829607E3600B535CF /* StatsViewController.swift */,
+				B75FC29B29607E7000B535CF /* LeaderboardViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,6 +167,7 @@
 				B744C097295D097400C046C1 /* Cell.swift */,
 				B76496C1295F721600F3D229 /* RegisterUserRequest.swift */,
 				B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */,
+				B75FC29D2960805D00B535CF /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,6 +213,15 @@
 				B744C082295B92B500C046C1 /* LaunchScreen.storyboard */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B75FC29A29607E3D00B535CF /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				B744C07B295B92B400C046C1 /* GameViewController.swift */,
+				B744C099295E2B1300C046C1 /* RulesViewController.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,15 +339,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B75FC29E2960805D00B535CF /* User.swift in Sources */,
 				B744C0AC295F536900C046C1 /* AlertManager.swift in Sources */,
-				B744C07C295B92B400C046C1 /* MainViewController.swift in Sources */,
+				B75FC29529607CE100B535CF /* MainViewController.swift in Sources */,
+				B744C07C295B92B400C046C1 /* GameViewController.swift in Sources */,
 				B744C0A6295E5C8200C046C1 /* CustomAuthTextField.swift in Sources */,
 				B744C0A4295E575900C046C1 /* AuthHeaderView.swift in Sources */,
 				B75FC293295FA13100B535CF /* Validator.swift in Sources */,
 				B744C092295B960800C046C1 /* KeyboardView.swift in Sources */,
+				B75FC29C29607E7000B535CF /* LeaderboardViewController.swift in Sources */,
 				B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */,
 				B744C0A1295E534200C046C1 /* ForgotPasswordViewController.swift in Sources */,
 				B744C098295D097400C046C1 /* Cell.swift in Sources */,
+				B75FC29929607E3600B535CF /* StatsViewController.swift in Sources */,
 				B744C0A8295E5F2700C046C1 /* CustomAuthButton.swift in Sources */,
 				B76496C6295F81CC00F3D229 /* MainViewTopButton.swift in Sources */,
 				B744C09D295E532700C046C1 /* RegistrationViewController.swift in Sources */,
@@ -335,6 +362,7 @@
 				B744C09F295E533500C046C1 /* LoginViewController.swift in Sources */,
 				B76496C0295F709700F3D229 /* AuthService.swift in Sources */,
 				B76496C2295F721600F3D229 /* RegisterUserRequest.swift in Sources */,
+				B75FC29729607D6E00B535CF /* MainTabController.swift in Sources */,
 				B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */,
 				B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */,
 			);
