@@ -26,7 +26,6 @@
 		B744C0A8295E5F2700C046C1 /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A7295E5F2700C046C1 /* CustomAuthButton.swift */; };
 		B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0A9295F378400C046C1 /* WebViewerController.swift */; };
 		B744C0AC295F536900C046C1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744C0AB295F536900C046C1 /* AlertManager.swift */; };
-		B744C0AF295F67AB00C046C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */; };
 		B75FC293295FA13100B535CF /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC292295FA13100B535CF /* Validator.swift */; };
 		B75FC29529607CE100B535CF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29429607CE100B535CF /* MainViewController.swift */; };
 		B75FC29729607D6E00B535CF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29629607D6E00B535CF /* MainTabController.swift */; };
@@ -38,6 +37,7 @@
 		B76496C2295F721600F3D229 /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C1295F721600F3D229 /* RegisterUserRequest.swift */; };
 		B76496C4295F7BA900F3D229 /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */; };
 		B76496C6295F81CC00F3D229 /* MainViewTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76496C5295F81CC00F3D229 /* MainViewTopButton.swift */; };
+		B7DD5518296095AC00654309 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7DD5517296095AC00654309 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +63,6 @@
 		B744C0A7295E5F2700C046C1 /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
 		B744C0A9295F378400C046C1 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
 		B744C0AB295F536900C046C1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
-		B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B75FC292295FA13100B535CF /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		B75FC29429607CE100B535CF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B75FC29629607D6E00B535CF /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
@@ -75,6 +74,7 @@
 		B76496C1295F721600F3D229 /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		B76496C3295F7BA900F3D229 /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		B76496C5295F81CC00F3D229 /* MainViewTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTopButton.swift; sourceTree = "<group>"; };
+		B7DD5517296095AC00654309 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF2E1AD3BB6E14FF07417C47 /* Pods-WordleClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordleClone.debug.xcconfig"; path = "Target Support Files/Pods-WordleClone/Pods-WordleClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,7 +209,7 @@
 		B744C0AD295F568F00C046C1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B744C0AE295F67AB00C046C1 /* GoogleService-Info.plist */,
+				B7DD5517296095AC00654309 /* GoogleService-Info.plist */,
 				B744C077295B92B400C046C1 /* AppDelegate.swift */,
 				B744C079295B92B400C046C1 /* SceneDelegate.swift */,
 				B744C080295B92B500C046C1 /* Assets.xcassets */,
@@ -289,7 +289,7 @@
 			files = (
 				B744C084295B92B500C046C1 /* LaunchScreen.storyboard in Resources */,
 				B744C081295B92B500C046C1 /* Assets.xcassets in Resources */,
-				B744C0AF295F67AB00C046C1 /* GoogleService-Info.plist in Resources */,
+				B7DD5518296095AC00654309 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2V54FBNXT7;
@@ -514,8 +515,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Wordlee;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -535,6 +536,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2V54FBNXT7;
@@ -543,8 +545,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Wordlee;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
