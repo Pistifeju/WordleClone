@@ -60,8 +60,23 @@ class ForgotPasswordViewController: UIViewController {
     
     @objc private func didTapForgotPassword() {
         guard let email = self.emailField.text, !email.isEmpty else {
+            AlertManager.showDidntFillTextFieldAlert(on: self)
             return
         }
-        // TODO: - Email validation
+        
+        if !Validator.isValidEmail(field: emailField) {
+            AlertManager.showInvalidEmailAlert(on: self)
+            return
+        }
+        
+        AuthService.shared.forgotPassword(with: email) { [weak self] error in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                AlertManager.showForgotPasswordErrorAlert(on: strongSelf, with: error)
+                return
+            }
+            
+            AlertManager.showPasswordResetSentAlert(on: strongSelf)
+        }
     }
 }
