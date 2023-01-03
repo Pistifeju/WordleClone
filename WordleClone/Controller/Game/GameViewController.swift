@@ -20,18 +20,20 @@ class GameViewController: UIViewController {
         "small","after","water","black","state","again","light","night","early","paper","party","place","group","right","since","those"
     ]
     
+    private var didWin = false
     private var wordle: Wordle
     private var answer = ""
     private var guesses: [[Cell?]] = Array(repeating: Array(repeating: nil, count: 5), count: 6)
     private var currentGuessIndex = -1
     
+    private let endGamePopUpView = EndGamePopUpView()
     private let keyboardView = KeyboardView(frame: .zero)
     private let boardView = BoardView(frame: .zero)
     private var currentRow = 0
     
-    private var settingsButton: MainViewTopButton = MainViewTopButton(image: "gearshape")
-    private var gameRulesButton: MainViewTopButton = MainViewTopButton(image: "questionmark.diamond")
-    private var statisticsButton: MainViewTopButton = MainViewTopButton(image: "chart.bar.xaxis")
+    private var settingsButton = GameViewTopButton(image: "gearshape")
+    private var gameRulesButton = GameViewTopButton(image: "questionmark.diamond")
+    private var statisticsButton = GameViewTopButton(image: "chart.bar.xaxis")
     
     // MARK: - LifeCycle
     
@@ -84,7 +86,7 @@ class GameViewController: UIViewController {
         
         view.addSubview(keyboardView)
         view.addSubview(boardView)
-
+        
         NSLayoutConstraint.activate([
             keyboardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             keyboardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -97,7 +99,17 @@ class GameViewController: UIViewController {
             boardView.topAnchor.constraint(equalToSystemSpacingBelow: settingsButton.bottomAnchor, multiplier: 2),
             keyboardView.topAnchor.constraint(equalToSystemSpacingBelow: boardView.bottomAnchor, multiplier: 2),
         ])
+    }
+    
+    private func addEndGamePopUpViewToView() {
+        view.addSubview(endGamePopUpView)
         
+        NSLayoutConstraint.activate([
+            endGamePopUpView.topAnchor.constraint(equalTo: view.topAnchor),
+            endGamePopUpView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            endGamePopUpView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            endGamePopUpView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
     
     private func createTopItems() {
@@ -154,7 +166,6 @@ class GameViewController: UIViewController {
         let countGreens = self.guesses[currentRow].filter({$0?.color == UIColor.systemGreen}).count
         
         return countGreens == 5
-        
     }
     
     private func animateButtonTap(button: UIButton) {
@@ -170,6 +181,11 @@ class GameViewController: UIViewController {
             })
         }
     }
+    
+    private func disableKeyboardAfterGameEnds() {
+        self.keyboardView.isUserInteractionEnabled = false
+    }
+    
     // MARK: - Selectors
     
     @objc private func didTapStatistics(sender: UIButton) {
@@ -180,22 +196,23 @@ class GameViewController: UIViewController {
         self.animateButtonTap(button: sender)
         let vc = RulesViewController()
         self.present(vc, animated: true)
-        print("didtaprues")
     }
     
     @objc private func didTapSettings(sender: UIButton) {
         self.animateButtonTap(button: sender)
-        AuthService.shared.signOut { [weak self] error in
-            guard let strongSelf = self else { return }
-            if let error = error {
-                AlertManager.showLogoutErrorAlert(on: strongSelf, with: error)
-                return
-            }
-            
-            if let sceneDelegate = strongSelf.view.window?.windowScene?.delegate as? SceneDelegate {
-                sceneDelegate.checkAuthentication()
-            }
-        }
+        
+        self.dismiss(animated: true)
+//        AuthService.shared.signOut { [weak self] error in
+//            guard let strongSelf = self else { return }
+//            if let error = error {
+//                AlertManager.showLogoutErrorAlert(on: strongSelf, with: error)
+//                return
+//            }
+//
+//            if let sceneDelegate = strongSelf.view.window?.windowScene?.delegate as? SceneDelegate {
+//                sceneDelegate.checkAuthentication()
+//            }
+//        }
     }
     
     @objc private func didTapLogout() {
@@ -254,9 +271,23 @@ extension GameViewController: KeyboardViewDelegate {
         
         if self.checkWin() {
             self.boardView.reloadData(won: true, at: currentRow)
+            //PopUp View
+            DispatchQueue.main.async {
+                self.addEndGamePopUpViewToView()
+                self.disableKeyboardAfterGameEnds()
+                self.endGamePopUpView.animateIn(didWin: true)
+            }
         } else {
             self.currentRow += 1
             self.currentGuessIndex = -1
+            if currentRow == 6 {
+                //user lost
+                DispatchQueue.main.async {
+                    self.addEndGamePopUpViewToView()
+                    self.disableKeyboardAfterGameEnds()
+                    self.endGamePopUpView.animateIn(didWin: false)
+                }
+            }
         }
     }
     

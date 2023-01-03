@@ -1,5 +1,5 @@
 //
-//  MainViewTopButton.swift
+//  GameViewTopButton.swift
 //  WordleClone
 //
 //  Created by István Juhász on 2022. 12. 30..
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MainViewTopButton: UIButton {
+class GameViewTopButton: UIButton {
     init(image: String) {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
