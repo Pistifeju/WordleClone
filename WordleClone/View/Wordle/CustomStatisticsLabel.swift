@@ -21,7 +21,7 @@ class CustomStatisticsLabel: UILabel {
         textAlignment = .center
         if isNumber {
             text = "\(number)"
-            font = UIFont.systemFont(ofSize: 30, weight: .medium)
+            font = UIFont.systemFont(ofSize: 28, weight: .medium)
         } else {
             text = title
             font = UIFont.systemFont(ofSize: 14, weight: .regular)

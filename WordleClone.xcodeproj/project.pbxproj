@@ -30,7 +30,7 @@
 		B75FC293295FA13100B535CF /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC292295FA13100B535CF /* Validator.swift */; };
 		B75FC29529607CE100B535CF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29429607CE100B535CF /* MainViewController.swift */; };
 		B75FC29729607D6E00B535CF /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29629607D6E00B535CF /* MainTabController.swift */; };
-		B75FC29929607E3600B535CF /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29829607E3600B535CF /* StatsViewController.swift */; };
+		B75FC29929607E3600B535CF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29829607E3600B535CF /* SettingsViewController.swift */; };
 		B75FC29C29607E7000B535CF /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29B29607E7000B535CF /* LeaderboardViewController.swift */; };
 		B75FC29E2960805D00B535CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29D2960805D00B535CF /* User.swift */; };
 		B75FC2A029608C0A00B535CF /* Wordle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FC29F29608C0A00B535CF /* Wordle.swift */; };
@@ -42,6 +42,7 @@
 		B7D3DCDA2962349500412FBC /* CustomStatisticsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCD92962349500412FBC /* CustomStatisticsLabel.swift */; };
 		B7D3DCDD2964A45E00412FBC /* PopUpViewLeaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCDC2964A45E00412FBC /* PopUpViewLeaveButton.swift */; };
 		B7D3DCDF2964A53B00412FBC /* PopUpViewStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCDE2964A53B00412FBC /* PopUpViewStackView.swift */; };
+		B7D3DCE12964D5AD00412FBC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCE02964D5AD00412FBC /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +72,7 @@
 		B75FC292295FA13100B535CF /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		B75FC29429607CE100B535CF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B75FC29629607D6E00B535CF /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
-		B75FC29829607E3600B535CF /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		B75FC29829607E3600B535CF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B75FC29B29607E7000B535CF /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		B75FC29D2960805D00B535CF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B75FC29F29608C0A00B535CF /* Wordle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle.swift; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		B7D3DCD92962349500412FBC /* CustomStatisticsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStatisticsLabel.swift; sourceTree = "<group>"; };
 		B7D3DCDC2964A45E00412FBC /* PopUpViewLeaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewLeaveButton.swift; sourceTree = "<group>"; };
 		B7D3DCDE2964A53B00412FBC /* PopUpViewStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewStackView.swift; sourceTree = "<group>"; };
+		B7D3DCE02964D5AD00412FBC /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		EF2E1AD3BB6E14FF07417C47 /* Pods-WordleClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordleClone.debug.xcconfig"; path = "Target Support Files/Pods-WordleClone/Pods-WordleClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,7 +155,7 @@
 				B744C09B295E52DE00C046C1 /* Authentication */,
 				B75FC29429607CE100B535CF /* MainViewController.swift */,
 				B75FC29629607D6E00B535CF /* MainTabController.swift */,
-				B75FC29829607E3600B535CF /* StatsViewController.swift */,
+				B75FC29829607E3600B535CF /* SettingsViewController.swift */,
 				B75FC29B29607E7000B535CF /* LeaderboardViewController.swift */,
 			);
 			path = Controller;
@@ -186,6 +188,7 @@
 				B76496BF295F709700F3D229 /* AuthService.swift */,
 				B744C0AB295F536900C046C1 /* AlertManager.swift */,
 				B75FC292295FA13100B535CF /* Validator.swift */,
+				B7D3DCE02964D5AD00412FBC /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -379,7 +382,7 @@
 				B744C0A1295E534200C046C1 /* ForgotPasswordViewController.swift in Sources */,
 				B744C098295D097400C046C1 /* Cell.swift in Sources */,
 				B7D3DCD829621A0B00412FBC /* EndGamePopUpView.swift in Sources */,
-				B75FC29929607E3600B535CF /* StatsViewController.swift in Sources */,
+				B75FC29929607E3600B535CF /* SettingsViewController.swift in Sources */,
 				B744C0A8295E5F2700C046C1 /* CustomAuthButton.swift in Sources */,
 				B76496C6295F81CC00F3D229 /* GameViewTopButton.swift in Sources */,
 				B744C09D295E532700C046C1 /* RegistrationViewController.swift in Sources */,
@@ -390,6 +393,7 @@
 				B744C09F295E533500C046C1 /* LoginViewController.swift in Sources */,
 				B76496C0295F709700F3D229 /* AuthService.swift in Sources */,
 				B76496C2295F721600F3D229 /* RegisterUserRequest.swift in Sources */,
+				B7D3DCE12964D5AD00412FBC /* UserService.swift in Sources */,
 				B75FC29729607D6E00B535CF /* MainTabController.swift in Sources */,
 				B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */,
 				B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */,

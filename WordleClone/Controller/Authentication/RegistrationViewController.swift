@@ -147,6 +147,7 @@ class RegistrationViewController: UIViewController {
             }
             
             if wasRegistered {
+                
                 if let sceneDelegate = strongSelf.view.window?.windowScene?.delegate as? SceneDelegate {
                     sceneDelegate.checkAuthentication()
                 }

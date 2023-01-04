@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol GameViewControllerDelegate: AnyObject {
+    func didFinishGame(user: User)
+}
 
 class GameViewController: UIViewController {
     
     // MARK: - Properties
+    
+    weak var delegate: GameViewControllerDelegate?
     
     let letters = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
     private var keys: [[Cell]] = []
@@ -26,20 +31,28 @@ class GameViewController: UIViewController {
     private var guesses: [[Cell?]] = Array(repeating: Array(repeating: nil, count: 5), count: 6)
     private var currentGuessIndex = -1
     
-    private let endGamePopUpView = EndGamePopUpView()
+    private var user: User
+    private var endGamePopUpView = EndGamePopUpView()
     private let keyboardView = KeyboardView(frame: .zero)
     private let boardView = BoardView(frame: .zero)
     private var currentRow = 0
     
-    private var settingsButton = GameViewTopButton(image: "gearshape")
+    private var exitButton = GameViewTopButton(image: "arrowshape.left")
     private var gameRulesButton = GameViewTopButton(image: "questionmark.diamond")
     private var statisticsButton = GameViewTopButton(image: "chart.bar.xaxis")
     
     // MARK: - LifeCycle
     
-    init(with wordle: Wordle) {
+    init(with wordle: Wordle, user: User) {
         self.wordle = wordle
+
+        self.user = user
+        
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    deinit {
+        
     }
     
     required init?(coder: NSCoder) {
@@ -48,6 +61,8 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        endGamePopUpView.delegate = self
         
         for row in letters {
             let chars = Array(row)
@@ -66,7 +81,7 @@ class GameViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.backgroundColor = .white
         
-        settingsButton.addTarget(self, action: #selector(didTapSettings(sender:)), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(didTapExit(sender:)), for: .touchUpInside)
         gameRulesButton.addTarget(self, action: #selector(didTapRules(sender:)), for: .touchUpInside)
         statisticsButton.addTarget(self, action: #selector(didTapStatistics(sender:)), for: .touchUpInside)
         
@@ -96,7 +111,7 @@ class GameViewController: UIViewController {
         NSLayoutConstraint.activate([
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: boardView.trailingAnchor, multiplier: 4),
             boardView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 4),
-            boardView.topAnchor.constraint(equalToSystemSpacingBelow: settingsButton.bottomAnchor, multiplier: 2),
+            boardView.topAnchor.constraint(equalToSystemSpacingBelow: exitButton.bottomAnchor, multiplier: 2),
             keyboardView.topAnchor.constraint(equalToSystemSpacingBelow: boardView.bottomAnchor, multiplier: 2),
         ])
     }
@@ -113,15 +128,15 @@ class GameViewController: UIViewController {
     }
     
     private func createTopItems() {
-        view.addSubview(settingsButton)
+        view.addSubview(exitButton)
         view.addSubview(gameRulesButton)
         view.addSubview(statisticsButton)
         
         NSLayoutConstraint.activate([
-            settingsButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
-            settingsButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 4),
-            gameRulesButton.centerYAnchor.constraint(equalTo: settingsButton.centerYAnchor),
-            statisticsButton.centerYAnchor.constraint(equalTo: settingsButton.centerYAnchor),
+            exitButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
+            exitButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 4),
+            gameRulesButton.centerYAnchor.constraint(equalTo: exitButton.centerYAnchor),
+            statisticsButton.centerYAnchor.constraint(equalTo: exitButton.centerYAnchor),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: gameRulesButton.trailingAnchor, multiplier: 4),
             gameRulesButton.leadingAnchor.constraint(equalToSystemSpacingAfter: statisticsButton.trailingAnchor, multiplier: 2),
         ])
@@ -186,6 +201,29 @@ class GameViewController: UIViewController {
         self.keyboardView.isUserInteractionEnabled = false
     }
     
+    private func updateUserStats(didWin: Bool) {
+        if didWin {
+            self.user.stats.wins += 1
+            self.user.stats.streak += 1
+            if self.user.stats.streak > self.user.stats.maxStreak {
+                self.user.stats.maxStreak = self.user.stats.streak
+            }
+        } else {
+            self.user.stats.losses += 1
+            self.user.stats.streak = 0
+        }
+        
+        self.endGamePopUpView.setStatValues(with: self.user)
+        
+        UserService.shared.uploadGame(user: self.user) { error in
+            if let error = error {
+                print("ERROR: \(error.localizedDescription)")
+            }
+            
+            self.delegate?.didFinishGame(user: self.user)
+        }
+    }
+    
     // MARK: - Selectors
     
     @objc private func didTapStatistics(sender: UIButton) {
@@ -198,10 +236,14 @@ class GameViewController: UIViewController {
         self.present(vc, animated: true)
     }
     
-    @objc private func didTapSettings(sender: UIButton) {
+    @objc private func didTapExit(sender: UIButton) {
         self.animateButtonTap(button: sender)
         
-        self.dismiss(animated: true)
+        let alert = UIAlertController(title: "Do you want to exit?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { [weak self] _ in
+            self?.dismiss(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel))
 //        AuthService.shared.signOut { [weak self] error in
 //            guard let strongSelf = self else { return }
 //            if let error = error {
@@ -213,6 +255,8 @@ class GameViewController: UIViewController {
 //                sceneDelegate.checkAuthentication()
 //            }
 //        }
+        
+        self.present(alert, animated: true)
     }
     
     @objc private func didTapLogout() {
@@ -272,6 +316,7 @@ extension GameViewController: KeyboardViewDelegate {
         if self.checkWin() {
             self.boardView.reloadData(won: true, at: currentRow)
             //PopUp View
+            self.updateUserStats(didWin: true)
             DispatchQueue.main.async {
                 self.addEndGamePopUpViewToView()
                 self.disableKeyboardAfterGameEnds()
@@ -282,6 +327,7 @@ extension GameViewController: KeyboardViewDelegate {
             self.currentGuessIndex = -1
             if currentRow == 6 {
                 //user lost
+                self.updateUserStats(didWin: false)
                 DispatchQueue.main.async {
                     self.addEndGamePopUpViewToView()
                     self.disableKeyboardAfterGameEnds()
@@ -320,5 +366,13 @@ extension GameViewController: KeyboardViewDelegate {
         }
         
         boardView.reloadData(won: nil, at: nil)
+    }
+}
+
+// MARK: - EndGamePopUpViewDelegate
+
+extension GameViewController: EndGamePopUpViewDelegate {
+    func didTapMenu() {
+        self.dismiss(animated: true)
     }
 }

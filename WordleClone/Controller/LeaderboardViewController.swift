@@ -23,6 +23,8 @@ class LeaderboardViewController: UIViewController {
     private func setupUI() {
         self.view.backgroundColor = .yellow
         
+        navigationItem.title = "Leaderboard"
+        
         NSLayoutConstraint.activate([
             
         ])

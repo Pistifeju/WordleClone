@@ -25,20 +25,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     public func checkAuthentication() {
         if Auth.auth().currentUser == nil {
-            self.goToController(with: LoginViewController())
+            self.goToController(with: LoginViewController(), withNav: true)
         } else {
-            self.goToController(with: MainTabController())
+            self.goToController(with: MainTabController(), withNav: false)
         }
     }
     
-    private func goToController(with viewController: UIViewController) {
+    private func goToController(with viewController: UIViewController, withNav: Bool) {
         DispatchQueue.main.async { [weak self] in
             UIView.animate(withDuration: 0.25) {
                 self?.window?.layer.opacity = 0
             } completion: { [weak self] _ in
                 guard let strongSelf = self else { return }
                 
-                strongSelf.window?.rootViewController = UINavigationController(rootViewController: viewController)
+                if withNav {
+                    strongSelf.window?.rootViewController = UINavigationController(rootViewController: viewController)
+                } else {
+                    strongSelf.window?.rootViewController = viewController
+                }
+                
                 strongSelf.window?.makeKeyAndVisible()
                 
                 UIView.animate(withDuration: 0.25) { [ weak self ] in

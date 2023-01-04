@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol EndGamePopUpViewDelegate: AnyObject {
+    func didTapMenu()
+}
+
 class EndGamePopUpView: UIView {
     
     // MARK: - Properties
@@ -51,9 +55,12 @@ class EndGamePopUpView: UIView {
     private let currentStreakLabel = CustomStatisticsLabel(with: "Current Streak", isNumber: false)
     private let maxStreakLabel = CustomStatisticsLabel(with: "Max Streak", isNumber: false)
     
+    weak var delegate: EndGamePopUpViewDelegate?
+    
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    init() {
+        super.init(frame: .zero)
         
         self.frame = UIScreen.main.bounds
         
@@ -62,7 +69,7 @@ class EndGamePopUpView: UIView {
         
         configureUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -130,6 +137,16 @@ class EndGamePopUpView: UIView {
         ])
     }
     
+    public func setStatValues(with user: User) {
+        self.maxStreakNumLabel.text = "\(user.stats.maxStreak)"
+        self.currentStreakNumLabel.text = "\(user.stats.streak)"
+        let played = user.stats.wins + user.stats.losses
+        self.playedNumLabel.text = "\(played)"
+        let percent = Float(user.stats.wins) / Float(played) * 100.0
+        let oneDecimalPercent = Float(String(format: "%.1f", percent))
+        self.winPercentNumLabel.text = "\(oneDecimalPercent!)"
+    }
+    
     func animateOut() {
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, animations: {
             self.container.transform = CGAffineTransform(translationX: 0, y: -self.frame.height)
@@ -159,7 +176,7 @@ class EndGamePopUpView: UIView {
     // MARK: - Selectors
     
     @objc private func didTapMenu() {
-        
+        delegate?.didTapMenu()
     }
     
     @objc private func didTapExit() {

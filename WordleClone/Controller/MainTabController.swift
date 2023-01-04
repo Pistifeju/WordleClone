@@ -35,15 +35,14 @@ class MainTabController: UITabBarController {
             }
         }
         
+        
         configureUI()
     }
-    
-    // MARK: - API
     
     // MARK: - Helpers
     
     private func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         tabBar.isHidden = false
         tabBar.isTranslucent = false
         tabBar.tintColor = .label
@@ -55,24 +54,29 @@ class MainTabController: UITabBarController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         
-        let main = templateNavigationController(unselectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!, rootViewController: MainViewController())
+        let main = templateNavigationController(unselectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!, rootViewController: MainViewController(user: user))
+        main.title = "Home"
         
-        let stats = templateNavigationController(unselectedImage: UIImage(systemName: "chart.bar")!, selectedImage: UIImage(systemName: "chart.bar.fill")!, rootViewController: StatsViewController())
+        let settings = templateNavigationController(unselectedImage: UIImage(systemName: "gearshape")!, selectedImage: UIImage(systemName: "gearshape.fill")!, rootViewController: SettingsViewController())
+        settings.title = "Settings"
         
-        let leaderBoard = templateNavigationController(unselectedImage: UIImage(systemName: "trophy")!, selectedImage: UIImage(systemName: "trophy.fill")!, rootViewController: LeaderboardViewController())
+        let leaderboard = templateNavigationController(unselectedImage: UIImage(systemName: "trophy")!, selectedImage: UIImage(systemName: "trophy.fill")!, rootViewController: LeaderboardViewController())
+        leaderboard.title = "Leaderboard"
         
-        viewControllers = [main, stats, leaderBoard]
+        viewControllers = [main, leaderboard, settings]
         
     }
     
     private func templateNavigationController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController) -> UINavigationController {
-            let nav = UINavigationController(rootViewController: rootViewController)
-            nav.tabBarItem.image = unselectedImage
-            nav.tabBarItem.selectedImage = selectedImage
-            nav.navigationBar.tintColor = .label
-            nav.navigationBar.isTranslucent = true
-            nav.navigationBar.isHidden = false
-            
-            return nav
-        }
+        let nav = UINavigationController(rootViewController: rootViewController)
+        nav.tabBarItem.image = unselectedImage
+        nav.tabBarItem.selectedImage = selectedImage
+        nav.navigationBar.tintColor = .label
+        nav.navigationBar.isTranslucent = false
+        nav.navigationBar.isHidden = false
+        nav.navigationBar.backgroundColor = .systemBackground
+        nav.navigationBar.tintColor = .black
+        
+        return nav
+    }
 }
