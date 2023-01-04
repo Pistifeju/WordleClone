@@ -15,6 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         self.setupWindow(with: scene)
         self.checkAuthentication()
+        if let darkMode = UserDefaults.standard.object(forKey: "DarkMode"){
+            if darkMode as! Bool == true{
+                window?.overrideUserInterfaceStyle = .dark
+            } else {
+                window?.overrideUserInterfaceStyle = .light
+            }
+        } else {
+            UserDefaults.standard.setValue(false, forKey: "DarkMode")
+        }
     }
     
     private func setupWindow(with scene: UIScene) {

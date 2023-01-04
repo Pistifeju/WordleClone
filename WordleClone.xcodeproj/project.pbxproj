@@ -43,6 +43,8 @@
 		B7D3DCDD2964A45E00412FBC /* PopUpViewLeaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCDC2964A45E00412FBC /* PopUpViewLeaveButton.swift */; };
 		B7D3DCDF2964A53B00412FBC /* PopUpViewStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCDE2964A53B00412FBC /* PopUpViewStackView.swift */; };
 		B7D3DCE12964D5AD00412FBC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCE02964D5AD00412FBC /* UserService.swift */; };
+		B7D3DCE3296624A600412FBC /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCE2296624A600412FBC /* SettingsCell.swift */; };
+		B7D3DCE529662A2A00412FBC /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCE429662A2A00412FBC /* SettingsHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		B7D3DCDC2964A45E00412FBC /* PopUpViewLeaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewLeaveButton.swift; sourceTree = "<group>"; };
 		B7D3DCDE2964A53B00412FBC /* PopUpViewStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewStackView.swift; sourceTree = "<group>"; };
 		B7D3DCE02964D5AD00412FBC /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		B7D3DCE2296624A600412FBC /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		B7D3DCE429662A2A00412FBC /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
 		EF2E1AD3BB6E14FF07417C47 /* Pods-WordleClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordleClone.debug.xcconfig"; path = "Target Support Files/Pods-WordleClone/Pods-WordleClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +170,8 @@
 			children = (
 				B7D3DCDB2964A3B900412FBC /* Wordle */,
 				B744C0A2295E574F00C046C1 /* Authentication */,
+				B7D3DCE2296624A600412FBC /* SettingsCell.swift */,
+				B7D3DCE429662A2A00412FBC /* SettingsHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				B76496C6295F81CC00F3D229 /* GameViewTopButton.swift in Sources */,
 				B744C09D295E532700C046C1 /* RegistrationViewController.swift in Sources */,
 				B744C078295B92B400C046C1 /* AppDelegate.swift in Sources */,
+				B7D3DCE529662A2A00412FBC /* SettingsHeaderView.swift in Sources */,
 				B744C096295CF6BE00C046C1 /* BoardView.swift in Sources */,
 				B744C07A295B92B400C046C1 /* SceneDelegate.swift in Sources */,
 				B744C09A295E2B1300C046C1 /* RulesViewController.swift in Sources */,
@@ -397,6 +404,7 @@
 				B75FC29729607D6E00B535CF /* MainTabController.swift in Sources */,
 				B744C0AA295F378400C046C1 /* WebViewerController.swift in Sources */,
 				B744C094295BAE0200C046C1 /* KeyCell.swift in Sources */,
+				B7D3DCE3296624A600412FBC /* SettingsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
