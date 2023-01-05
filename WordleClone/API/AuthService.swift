@@ -114,7 +114,7 @@ class AuthService {
             
             guard let data = snapshot?.data() else { return }
             
-            let user = User(dictionary: data, withUID: userUID)
+            let user = User(dictionary: data)
             
             completion(user, nil)
         }

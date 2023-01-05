@@ -138,12 +138,13 @@ class EndGamePopUpView: UIView {
     }
     
     public func setStatValues(with user: User) {
-        self.maxStreakNumLabel.text = "\(user.stats.maxStreak)"
-        self.currentStreakNumLabel.text = "\(user.stats.streak)"
         let played = user.stats.wins + user.stats.losses
-        self.playedNumLabel.text = "\(played)"
         let percent = Float(user.stats.wins) / Float(played) * 100.0
         let oneDecimalPercent = Float(String(format: "%.1f", percent))
+        
+        self.maxStreakNumLabel.text = "\(user.stats.maxStreak)"
+        self.currentStreakNumLabel.text = "\(user.stats.streak)"
+        self.playedNumLabel.text = "\(played)"
         self.winPercentNumLabel.text = "\(oneDecimalPercent!)"
     }
     

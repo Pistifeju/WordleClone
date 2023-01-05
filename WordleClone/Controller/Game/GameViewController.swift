@@ -244,17 +244,7 @@ class GameViewController: UIViewController {
             self?.dismiss(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel))
-//        AuthService.shared.signOut { [weak self] error in
-//            guard let strongSelf = self else { return }
-//            if let error = error {
-//                AlertManager.showLogoutErrorAlert(on: strongSelf, with: error)
-//                return
-//            }
-//
-//            if let sceneDelegate = strongSelf.view.window?.windowScene?.delegate as? SceneDelegate {
-//                sceneDelegate.checkAuthentication()
-//            }
-//        }
+//        
         
         self.present(alert, animated: true)
     }

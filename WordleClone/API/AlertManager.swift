@@ -88,4 +88,8 @@ extension AlertManager {
     public static func showFetchingUserErrorAlert(on VC: UIViewController, with error: Error) {
         self.showBasicAlert(on: VC, with: "User Fetching Error", and: (error.localizedDescription)) //Error is passed from Firebase
     }
+    
+    public static func showFetchingAllUsersErrorAlert(on VC: UIViewController, with error: Error) {
+        self.showBasicAlert(on: VC, with: "User Fetching Error", and: (error.localizedDescription)) //Error is passed from Firebase
+    }
 }

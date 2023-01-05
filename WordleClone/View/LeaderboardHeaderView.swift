@@ -1,13 +1,14 @@
 //
-//  SettingsHeaderView.swift
+//  LeaderboardHeaderView.swift
 //  WordleClone
 //
-//  Created by István Juhász on 2023. 01. 04..
+//  Created by István Juhász on 2023. 01. 05..
 //
+
 
 import UIKit
 
-class SettingsHeaderView: UIView {
+class LeaderboardHeaderView: UIView {
     
     // MARK: - Properties
     

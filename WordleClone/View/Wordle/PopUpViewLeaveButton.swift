@@ -12,7 +12,7 @@ class PopUpViewLeaveButton: UIButton {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         setTitle(title, for: .normal)
-        self.tintColor = .label
+        self.setTitleColor(.systemBackground, for: .normal)
         self.layer.borderColor = UIColor.systemBackground.cgColor
         self.layer.cornerRadius = 12
         self.backgroundColor = .label

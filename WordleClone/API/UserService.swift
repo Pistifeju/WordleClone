@@ -19,9 +19,9 @@ struct UserService {
     ///   - user: The logged in user.
     ///   - completion: An optional error from firebase.
     public func uploadGame(user: User, completion: @escaping(Error?) -> Void) {
-        guard let _ = Auth.auth().currentUser?.uid else { return }
-                
-        let ref = db.collection("users").document(user.userUID)
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = db.collection("users").document(uid)
         ref.updateData([
             "losses": user.stats.losses,
             "wins": user.stats.wins,
@@ -29,6 +29,26 @@ struct UserService {
             "maxStreak": user.stats.maxStreak,
         ]) { error in
             completion(error)
+        }
+    }
+    
+    public func fetchAllUsers(completion: @escaping([User]?, Error?) -> Void) {
+        var users = [User]()
+        
+        db.collection("users").getDocuments { snapshot, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            
+            guard let snapshot = snapshot else { return }
+            
+            snapshot.documents.forEach { document in
+                let user = User(dictionary: document.data())
+                users.append(user)
+            }
+            
+            completion(users, nil)
         }
     }
 }

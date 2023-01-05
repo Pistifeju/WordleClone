@@ -17,11 +17,10 @@ class SettingsViewController: UIViewController {
         "Visit Our Help Center": SettingsCellType.link,
         "Contact Us": SettingsCellType.link,
         "About": SettingsCellType.simple,
+        "Log Out": SettingsCellType.logout
     ]
     
-    private let cellString = ["Dark Theme", "Report A Bug", "Visit Our Help Center", "Contact Us", "About"]
-    
-    private let settingsHeaderView = SettingsHeaderView(frame: .zero)
+    private let cellString = ["Dark Theme", "Report A Bug", "Visit Our Help Center", "Contact Us", "About", "Log Out"]
     
     private let settingsTableView: UITableView = {
         let tb = UITableView(frame: .zero)
@@ -61,12 +60,48 @@ class SettingsViewController: UIViewController {
         ])
     }
     
+    private func signOut() {
+        let alert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { _ in
+            AuthService.shared.signOut { [weak self] error in
+                guard let strongSelf = self else { return }
+                if let error = error {
+                    AlertManager.showLogoutErrorAlert(on: strongSelf, with: error)
+                    return
+                }
+                
+                if let sceneDelegate = strongSelf.view.window?.windowScene?.delegate as? SceneDelegate {
+                    sceneDelegate.checkAuthentication()
+                }
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Selectors
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cell = tableView.cellForRow(at: indexPath) as! SettingsCell
+        
+        switch cell.type {
+            
+        case .darkmode:
+            print("dark mode")
+        case .link:
+            print("link")
+        case .simple:
+            print("simple")
+        case .logout:
+            self.signOut()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,7 +109,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return cellString.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,13 +120,5 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: cellString, type: cellTypes[cellString] ?? .simple)
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return settingsHeaderView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
     }
 }

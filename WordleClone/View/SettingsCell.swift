@@ -8,7 +8,7 @@
 import UIKit
 
 enum SettingsCellType {
-    case darkmode, link, simple
+    case darkmode, link, simple, logout
 }
 
 class SettingsCell: UITableViewCell {
@@ -16,6 +16,7 @@ class SettingsCell: UITableViewCell {
     static let identifier = "SettingsCell"
         
     private let darkModeSwitcher = UISwitch()
+    public var type = SettingsCellType.simple
     
     private let cellLabel: UILabel = {
         let label = UILabel()
@@ -45,17 +46,26 @@ class SettingsCell: UITableViewCell {
     }
     
     func configure(with title: String, type: SettingsCellType) {
+        self.cellLabel.text = title
         
-        if type == .darkmode {
+        switch type {
+        case .darkmode:
+            self.type = .darkmode
             contentView.addSubview(darkModeSwitcher)
             NSLayoutConstraint.activate([
                 self.trailingAnchor.constraint(equalToSystemSpacingAfter: darkModeSwitcher.trailingAnchor, multiplier: 2),
                 darkModeSwitcher.centerYAnchor.constraint(equalTo: centerYAnchor),
             ])
-            
+        case .link:
+            cellLabel.textColor = .link
+            self.type = .link
+        case .simple:
+            cellLabel.textColor = .label
+            self.type = .simple
+        case .logout:
+            cellLabel.textColor = .systemRed
+            self.type = .logout
         }
-        
-        cellLabel.text = title
     }
     
     private func configureUI() {
