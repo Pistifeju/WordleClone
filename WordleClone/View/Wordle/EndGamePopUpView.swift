@@ -145,7 +145,19 @@ class EndGamePopUpView: UIView {
         self.maxStreakNumLabel.text = "\(user.stats.maxStreak)"
         self.currentStreakNumLabel.text = "\(user.stats.streak)"
         self.playedNumLabel.text = "\(played)"
-        self.winPercentNumLabel.text = "\(oneDecimalPercent!)"
+        self.winPercentNumLabel.text = "\(removeLastZero(float: oneDecimalPercent!))"
+    }
+    
+    private func removeLastZero(float: Float) -> String {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        guard let string = formatter.string(from: NSNumber(value: float)) else { return "" }
+        if string.hasSuffix("0") {
+            return String(string.dropLast().dropLast())
+        } else {
+            return string
+        }
     }
     
     func animateOut() {

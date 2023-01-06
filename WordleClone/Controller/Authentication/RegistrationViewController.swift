@@ -166,6 +166,8 @@ class RegistrationViewController: UIViewController {
     }
 }
 
+// MARK: - UITextViewDelegate
+
 extension RegistrationViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         

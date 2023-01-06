@@ -46,6 +46,7 @@
 		B7D3DCE3296624A600412FBC /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCE2296624A600412FBC /* SettingsCell.swift */; };
 		B7D3DCE72967710D00412FBC /* LeaderboardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCE62967710D00412FBC /* LeaderboardHeaderView.swift */; };
 		B7D3DCE92967715400412FBC /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCE82967715400412FBC /* LeaderboardCell.swift */; };
+		B7D3DCEF2968ACA000412FBC /* words.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3DCEE2968ACA000412FBC /* words.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		B7D3DCE2296624A600412FBC /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		B7D3DCE62967710D00412FBC /* LeaderboardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardHeaderView.swift; sourceTree = "<group>"; };
 		B7D3DCE82967715400412FBC /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		B7D3DCEE2968ACA000412FBC /* words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = words.swift; sourceTree = "<group>"; };
 		EF2E1AD3BB6E14FF07417C47 /* Pods-WordleClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordleClone.debug.xcconfig"; path = "Target Support Files/Pods-WordleClone/Pods-WordleClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +233,7 @@
 				B744C079295B92B400C046C1 /* SceneDelegate.swift */,
 				B744C080295B92B500C046C1 /* Assets.xcassets */,
 				B744C082295B92B500C046C1 /* LaunchScreen.storyboard */,
+				B7D3DCEE2968ACA000412FBC /* words.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				B744C078295B92B400C046C1 /* AppDelegate.swift in Sources */,
 				B744C096295CF6BE00C046C1 /* BoardView.swift in Sources */,
 				B744C07A295B92B400C046C1 /* SceneDelegate.swift in Sources */,
+				B7D3DCEF2968ACA000412FBC /* words.swift in Sources */,
 				B744C09A295E2B1300C046C1 /* RulesViewController.swift in Sources */,
 				B7D3DCE92967715400412FBC /* LeaderboardCell.swift in Sources */,
 				B744C09F295E533500C046C1 /* LoginViewController.swift in Sources */,

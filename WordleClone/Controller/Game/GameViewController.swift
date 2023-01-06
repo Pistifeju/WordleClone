@@ -20,10 +20,7 @@ class GameViewController: UIViewController {
     let letters = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
     private var keys: [[Cell]] = []
     
-    private let answers = [
-        "while","could","would","first","sound","light","right","world","large","under","about","other","house","place","point",
-        "small","after","water","black","state","again","light","night","early","paper","party","place","group","right","since","those"
-    ]
+    private var answers: [String] = []
     
     private var didWin = false
     private var wordle: Wordle
@@ -39,7 +36,6 @@ class GameViewController: UIViewController {
     
     private var exitButton = GameViewTopButton(image: "arrowshape.left")
     private var gameRulesButton = GameViewTopButton(image: "questionmark.diamond")
-    private var statisticsButton = GameViewTopButton(image: "chart.bar.xaxis")
     
     // MARK: - LifeCycle
     
@@ -73,7 +69,7 @@ class GameViewController: UIViewController {
             keys.append(cells)
         }
         
-        self.answer = answers.randomElement() ?? "after"
+        self.answer = words.randomElement() ?? "after"
         print(answer)
         
         navigationController?.navigationBar.isHidden = false
@@ -83,7 +79,6 @@ class GameViewController: UIViewController {
         
         exitButton.addTarget(self, action: #selector(didTapExit(sender:)), for: .touchUpInside)
         gameRulesButton.addTarget(self, action: #selector(didTapRules(sender:)), for: .touchUpInside)
-        statisticsButton.addTarget(self, action: #selector(didTapStatistics(sender:)), for: .touchUpInside)
         
         keyboardView.delegate = self
         keyboardView.datasource = self
@@ -130,15 +125,12 @@ class GameViewController: UIViewController {
     private func createTopItems() {
         view.addSubview(exitButton)
         view.addSubview(gameRulesButton)
-        view.addSubview(statisticsButton)
         
         NSLayoutConstraint.activate([
             exitButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
             exitButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 4),
             gameRulesButton.centerYAnchor.constraint(equalTo: exitButton.centerYAnchor),
-            statisticsButton.centerYAnchor.constraint(equalTo: exitButton.centerYAnchor),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: gameRulesButton.trailingAnchor, multiplier: 4),
-            gameRulesButton.leadingAnchor.constraint(equalToSystemSpacingAfter: statisticsButton.trailingAnchor, multiplier: 2),
         ])
     }
     
@@ -224,11 +216,16 @@ class GameViewController: UIViewController {
         }
     }
     
-    // MARK: - Selectors
-    
-    @objc private func didTapStatistics(sender: UIButton) {
-        self.animateButtonTap(button: sender)
+    private func endGame(didWin: Bool) {
+        self.updateUserStats(didWin: didWin)
+        DispatchQueue.main.async {
+            self.addEndGamePopUpViewToView()
+            self.disableKeyboardAfterGameEnds()
+            self.endGamePopUpView.animateIn(didWin: didWin)
+        }
     }
+    
+    // MARK: - Selectors
     
     @objc private func didTapRules(sender: UIButton) {
         self.animateButtonTap(button: sender)
@@ -275,6 +272,8 @@ extension GameViewController: BoardViewDataSource {
     }
 }
 
+// MARK: - KeyboardViewDataSource
+
 extension GameViewController: KeyboardViewDataSource {
     var keyCells: [[Cell]] {
         return self.keys
@@ -286,7 +285,6 @@ extension GameViewController: KeyboardViewDataSource {
 extension GameViewController: KeyboardViewDelegate {
     func didTapEnter(_ v: KeyboardView) {
         guard let _ = self.guesses[self.currentRow][4] else {
-            print("Nem jo, csinalj itt egy shake animaciot pl.")
             return
         }
         
@@ -305,24 +303,13 @@ extension GameViewController: KeyboardViewDelegate {
         
         if self.checkWin() {
             self.boardView.reloadData(won: true, at: currentRow)
-            //PopUp View
-            self.updateUserStats(didWin: true)
-            DispatchQueue.main.async {
-                self.addEndGamePopUpViewToView()
-                self.disableKeyboardAfterGameEnds()
-                self.endGamePopUpView.animateIn(didWin: true)
-            }
+            self.endGame(didWin: true)
         } else {
             self.currentRow += 1
             self.currentGuessIndex = -1
             if currentRow == 6 {
                 //user lost
-                self.updateUserStats(didWin: false)
-                DispatchQueue.main.async {
-                    self.addEndGamePopUpViewToView()
-                    self.disableKeyboardAfterGameEnds()
-                    self.endGamePopUpView.animateIn(didWin: false)
-                }
+                self.endGame(didWin: false)
             }
         }
     }
