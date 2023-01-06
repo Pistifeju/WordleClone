@@ -13,6 +13,8 @@ class LeaderboardViewController: UIViewController {
     
     private let refreshControl = UIRefreshControl()
     
+    private var selectedSegment = 0
+    
     private var users: [User]?
     
     private let headerView = LeaderboardHeaderView(frame: .zero)
@@ -21,7 +23,7 @@ class LeaderboardViewController: UIViewController {
         let tb = UITableView(frame: .zero)
         tb.backgroundColor = .systemBackground
         tb.translatesAutoresizingMaskIntoConstraints = false
-        tb.rowHeight = 50
+        tb.rowHeight = 100
         tb.isScrollEnabled = true
         return tb
     }()
@@ -33,6 +35,8 @@ class LeaderboardViewController: UIViewController {
         
         refreshControl.addTarget(self, action: #selector(refreshUsers), for: .valueChanged)
         leaderBoardTableView.refreshControl = refreshControl
+        
+        headerView.delegate = self
         
         fetchAllUsers()
         
@@ -67,8 +71,37 @@ class LeaderboardViewController: UIViewController {
             }
             
             strongSelf.users = users
-            strongSelf.leaderBoardTableView.reloadData()
+            strongSelf.sortUsers()
         }
+    }
+    
+    private func sortUsers() {
+        switch self.selectedSegment {
+        case 0:
+            users?.sort(by: { user1, user2 in
+                user1.stats.wins > user2.stats.wins
+            })
+        case 1:
+            users?.sort(by: { user1, user2 in
+                let played1 = user1.stats.wins + user1.stats.losses
+                let percent1 = Float(user1.stats.wins) / Float(played1) * 100.0
+                let oneDecimalPercent1 = Float(String(format: "%.1f", percent1))
+                
+                let played2 = user2.stats.wins + user2.stats.losses
+                let percent2 = Float(user2.stats.wins) / Float(played2) * 100.0
+                let oneDecimalPercent2 = Float(String(format: "%.1f", percent2))
+                
+                return oneDecimalPercent1! > oneDecimalPercent2!
+            })
+        case 2:
+            users?.sort(by: { user1, user2 in
+                user1.stats.maxStreak > user2.stats.maxStreak
+            })
+        default:
+            break
+        }
+        
+        self.leaderBoardTableView.reloadData()
     }
     
     // MARK: - Selectors
@@ -78,6 +111,17 @@ class LeaderboardViewController: UIViewController {
         self.refreshControl.endRefreshing()
     }
 }
+
+// MARK: - LeaderboardHeaderViewDelegate
+
+extension LeaderboardViewController: LeaderboardHeaderViewDelegate {
+    func segmentChanged(with selectedIndex: Int) {
+        self.selectedSegment = selectedIndex
+        sortUsers()
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension LeaderboardViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -104,7 +148,7 @@ extension LeaderboardViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LeaderboardCell.identifier, for: indexPath) as! LeaderboardCell
         if let user = self.users?[indexPath.row] {
-            cell.configure(with: user)
+            cell.configure(with: user, and: selectedSegment)
         }
         
         return cell

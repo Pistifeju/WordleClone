@@ -17,37 +17,19 @@ class LeaderboardCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Error"
         label.textColor = .label
-        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 28, weight: .semibold)
         return label
     }()
     
-    private let winLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Error"
         label.textColor = .label
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
-    
-    private let winPercentLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Error"
-        label.textColor = .label
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        return label
-    }()
-    
-    private let maxStreakLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Error"
-        label.textColor = .label
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        return label
-    }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
@@ -57,36 +39,43 @@ class LeaderboardCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with user: User) {
+    func configure(with user: User, and selectedIndex: Int) {
         let played = user.stats.wins + user.stats.losses
         let percent = Float(user.stats.wins) / Float(played) * 100.0
-        let oneDecimalPercent = Float(String(format: "%.1f", percent))
+        var oneDecimalPercent = Float(String(format: "%.1f", percent))
+        
+        if oneDecimalPercent!.isNaN {
+            oneDecimalPercent = 0.0
+        }
+        
+        var title = ""
+        switch selectedIndex {
+        case 0:
+            title = "Wins: \(user.stats.wins)"
+        case 1:
+            title = "Win Percent: \(oneDecimalPercent!)%"
+        case 2:
+            title = "Max Streak: \(user.stats.maxStreak)"
+        default:
+            break
+        }
         
         self.nameLabel.text = user.username
-        self.winLabel.text = "\(user.stats.wins)"
-        self.winPercentLabel.text = "\(oneDecimalPercent!)"
-        self.maxStreakLabel.text = "\(user.stats.maxStreak)"
+        self.titleLabel.text = title
     }
     
     private func configureUI() {
         backgroundColor = .systemBackground
         
         addSubview(nameLabel)
-        addSubview(winLabel)
-        addSubview(winPercentLabel)
-        addSubview(maxStreakLabel)
+        addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
-            nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            nameLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
+            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            trailingAnchor.constraint(equalToSystemSpacingAfter: maxStreakLabel.trailingAnchor, multiplier: 2),
-            maxStreakLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: winPercentLabel.trailingAnchor, multiplier: 2),
-            winPercentLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: winLabel.trailingAnchor, multiplier: 2),
-            
-            winLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            maxStreakLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            winPercentLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: nameLabel.bottomAnchor, multiplier: 2),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
 }
